@@ -1012,6 +1012,8 @@
     <Content Include="template\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="Views\Shared\_Layout_Login.cshtml" />
     <Content Include="Views\Login\IniciarSesion.cshtml" />
+    <Content Include="Views\Login\RecuperarCuenta.cshtml" />
+    <Content Include="Views\Login\RegistrarCuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

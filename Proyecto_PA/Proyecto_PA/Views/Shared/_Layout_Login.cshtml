@@ -16,39 +16,114 @@
     <link type="text/css" rel="stylesheet" href="~/template/css/style.css" />
 
 </head>
-<div>
-    <body>
-        <header>
-            <div id="header">
-                <div class="container">
-                    <div>
-                        <div>
-                            <div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="header-logo">
-                                            <a href="#" class="logo">
-                                                <img src="~/template/img/logo.png" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<body>
+    <header>
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-left">
+                    <li><a href="#"><i class="fa fa-phone"></i> +506 86077091</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Electro@gmail.com</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> Sabana Sur</a></li>
+                </ul>
+                <ul class="header-links pull-right">
+                    <li><a href="@Url.Action("IniciarSesion","Login")"><i class="fa fa-user-o"></i> Inciar Sesión</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Registarse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <a href="#" class="logo">
+                                <img src="~/template/img/logo.png" alt="">
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
-        <br />
+        </div>
+    </header>
+    <nav id="navigation">
+        <div class="section" style="width: 100%;">
+            <div class="container">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        @RenderBody()
-
-        <script src="~/template/js/jquery.min.js"></script>
-        <script src="~/template/js/bootstrap.min.js"></script>
-        <script src="~/template/js/slick.min.js"></script>
-        <script src="~/template/js/nouislider.min.js"></script>
-        <script src="~/template/js/jquery.zoom.min.js"></script>
-        <script src="~/template/js/main.js"></script>
-    </body>
-</div>
+    <footer id="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">About Us</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">Categories</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Hot deals</a></li>
+                                <li><a href="#">Laptops</a></li>
+                                <li><a href="#">Smartphones</a></li>
+                                <li><a href="#">Cameras</a></li>
+                                <li><a href="#">Accessories</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix visible-xs"></div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">Information</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Orders and Returns</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bottom-footer" class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <ul class="footer-payments">
+                            <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+                            <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+                            <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+                        </ul>
+                        <span class="copyright">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/template/js/jquery.min.js"></script>
+    <script src="~/template/js/bootstrap.min.js"></script>
+    <script src="~/template/js/slick.min.js"></script>
+    <script src="~/template/js/nouislider.min.js"></script>
+    <script src="~/template/js/jquery.zoom.min.js"></script>
+    <script src="~/template/js/main.js"></script>
+</body>
 </html>

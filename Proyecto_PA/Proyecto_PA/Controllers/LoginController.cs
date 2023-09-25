@@ -17,5 +17,15 @@ namespace Proyecto_PA.Controllers
         {
             return View();
         }
+
+        public ActionResult RecuperarCuenta()
+        {
+            return View();
+        }
+
+        public ActionResult RegistrarCuenta()
+        {
+            return View();
+        }
     }
 }
