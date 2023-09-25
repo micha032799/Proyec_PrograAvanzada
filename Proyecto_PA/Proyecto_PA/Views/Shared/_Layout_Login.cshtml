@@ -27,7 +27,7 @@
                 </ul>
                 <ul class="header-links pull-right">
                     <li><a href="@Url.Action("IniciarSesion","Login")"><i class="fa fa-user-o"></i> Inciar Sesión</a></li>
-                    <li><a href="#"><i class="fa fa-user-o"></i> Registarse</a></li>
+                    <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
                 </ul>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="#" class="logo">
+                            <a href="@Url.Action("Index","Login")" class="logo">
                                 <img src="~/template/img/logo.png" alt="">
                             </a>
                         </div>
@@ -56,44 +56,44 @@
     </nav>
 
     <footer id="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <div class="section">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">About Us</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-                            <ul class="footer-links">
-                                <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-                            </ul>
+                <div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-title">Sobre Nosotros</h3>
+                                <p> En frente del Cotepecos Sabana Sur, San José, Costa Rica</p>
+                                <ul class="footer-links">
+                                    <li><a href="#"><i class="fa fa-map-marker"></i> En frente del Cotepecos Sabana Sur, San José, Costa Rica</a></li>
+                                    <li><a href="#"><i class="fa fa-phone"></i>+506 86077091</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope-o"></i>Electro@gmail.com</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Categories</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">Hot deals</a></li>
-                                <li><a href="#">Laptops</a></li>
-                                <li><a href="#">Smartphones</a></li>
-                                <li><a href="#">Cameras</a></li>
-                                <li><a href="#">Accessories</a></li>
-                            </ul>
+                        <div class="col-md-3 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-title">Categories</h3>
+                                <ul class="footer-links">
+                                    <li><a href="#">Ofertas</a></li>
+                                    <li><a href="#">Nuevos productos</a></li>
+                                    <li><a href="#">Celulares</a></li>
+                                    <li><a href="#">Cámaras</a></li>
+                                    <li><a href="#">Accesorios</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="clearfix visible-xs"></div>
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Information</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Orders and Returns</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                            </ul>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="col-md-3 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-title">Información</h3>
+                                <ul class="footer-links">
+                                    <li><a href="#">Política de privacidad</a></li>
+                                    <li><a href="#">Términos y Condiciones</a></li>
+                                </ul>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -102,17 +102,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <ul class="footer-payments">
-                            <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-                            <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-                        </ul>
                         <span class="copyright">
                             Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <script>document.write(new Date().getFullYear());</script> Todos los derechos son reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         </span>
                     </div>
                 </div>
