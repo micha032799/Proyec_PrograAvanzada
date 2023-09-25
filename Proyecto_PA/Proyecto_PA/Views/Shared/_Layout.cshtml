@@ -21,39 +21,13 @@
         <div id="top-header">
             <div class="container">
                 <ul class="header-links pull-left">
-                    <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i> +506 86077091</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> Electro@gmail.com</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> Sabana Sur</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                    <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-                    <ul class="navbar-nav navbar-nav-right">
-
-                        <li class="nav-item nav-profile dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                                <img src="~/template/images/faces/face28.jpg" alt="profile" />
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-
-                                <a class="dropdown-item" href="@Url.Action("IniciarSesion","Login")">
-                                    <i class="ti-home text-primary"></i>
-                                    Iniciar Sesión
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <i class="ti-settings text-primary"></i>
-                                    Settings
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <i class="ti-power-off text-primary"></i>
-                                    Logout
-                                </a>
-
-                            </div>
-                        </li>
-                    </ul>
+                    <li><a href="@Url.Action("IniciarSesion","Login")"><i class="fa fa-user-o"></i> Inciar Sesión</a></li>
+                    <li><a href="#"><i class="fa fa-user-o"></i> Registarse</a></li
                 </ul>
             </div>
         </div>
@@ -71,12 +45,12 @@
                         <div class="header-search">
                             <form>
                                 <select class="input-select">
-                                    <option value="0">All Categories</option>
-                                    <option value="1">Category 01</option>
-                                    <option value="1">Category 02</option>
+                                    <option value="0">Categorias</option>
+                                    <option value="1">Categoria 01</option>
+                                    <option value="1">Categoria 02</option>
                                 </select>
-                                <input class="input" placeholder="Search here">
-                                <button class="search-btn">Search</button>
+                                <input class="input" placeholder="Ingrese el nombre del artículo">
+                                <button class="search-btn">Buscar</button>
                             </form>
                         </div>
                     </div>
@@ -85,14 +59,14 @@
                             <div>
                                 <a href="#">
                                     <i class="fa fa-heart-o"></i>
-                                    <span>Your Wishlist</span>
+                                    <span>Favoritos</span>
                                     <div class="qty">2</div>
                                 </a>
                             </div>
                             <div class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span>Your Cart</span>
+                                    <span>Carrito</span>
                                     <div class="qty">3</div>
                                 </a>
                                 <div class="cart-dropdown">
@@ -102,7 +76,7 @@
                                                 <img src="~/template/img/product01.png" alt="">
                                             </div>
                                             <div class="product-body">
-                                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                                <h3 class="product-name"><a href="#">Laptop</a></h3>
                                                 <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
                                             </div>
                                             <button class="delete"><i class="fa fa-close"></i></button>
@@ -124,8 +98,8 @@
                                         <h5>SUBTOTAL: $2940.00</h5>
                                     </div>
                                     <div class="cart-btns">
-                                        <a href="#">View Cart</a>
-                                        <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="#">Ver Artículo</a>
+                                        <a href="#">Pagar  <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -145,13 +119,13 @@
         <div class="container">
             <div id="responsive-nav">
                 <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Hot Deals</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Smartphones</a></li>
-                    <li><a href="#">Cameras</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li class="active"><a href="#">Pantalla Principal</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Categorias</a></li>
+                    <li><a href="#">Computadoras</a></li>
+                    <li><a href="#">Teléfonos</a></li>
+                    <li><a href="#">Cámaras</a></li>
+                    <li><a href="#">Accesorios</a></li>
                 </ul>
             </div>
         </div>
@@ -165,8 +139,8 @@
                             <img src="~/template/img/shop01.png" alt="">
                         </div>
                         <div class="shop-body">
-                            <h3>Laptop<br>Collection</h3>
-                            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <h3>Colección<br>Computadoras</h3>
+                            <a href="#" class="cta-btn">Ver ahora <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -176,8 +150,8 @@
                             <img src="~/template/img/shop03.png" alt="">
                         </div>
                         <div class="shop-body">
-                            <h3>Accessories<br>Collection</h3>
-                            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <h3>Colección<br>Accesorios</h3>
+                            <a href="#" class="cta-btn">Ver ahora <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -187,8 +161,8 @@
                             <img src="~/template/img/shop02.png" alt="">
                         </div>
                         <div class="shop-body">
-                            <h3>Cameras<br>Collection</h3>
-                            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                            <h3>Colección<br>Cámara</h3>
+                            <a href="#" class="cta-btn">Ver ahora <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -200,14 +174,14 @@
             <div class="row">
                 @RenderBody()
                 <div class="col-md-12">
-                    <div class="section-title">
-                        <h3 class="title">New Products</h3>
+                    <div class="section-title"> 
+                        <h3 class="title">Nuevos Productos</h3>
                         <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+                                <li class="active"><a data-toggle="tab" href="#tab1">Computadoras</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Teléfonos</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Cámaras</a></li>
+                                <li><a data-toggle="tab" href="#tab1">Accesorios</a></li>
                             </ul>
                         </div>
                     </div>
@@ -226,7 +200,7 @@
                                             </div>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Category</p>
+                                            <p class="product-category">Categoria </p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
@@ -234,16 +208,16 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
+                                                <i class="fa fa-star"></i> 
+                                            </div> 
                                             <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a favoritos</span></button>
+                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Añadir al Carrito</span></button>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Ver Árticulos</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Comprar</button>
                                         </div>
                                     </div>
                                     <div class="product">
@@ -254,7 +228,7 @@
                                             </div>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Category</p>
+                                            <p class="product-category">Categoria</p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
@@ -265,13 +239,13 @@
                                                 <i class="fa fa-star-o"></i>
                                             </div>
                                             <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a favoritos</span></button>
+                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Añadir al Carrito</span></button>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Ver Árticulos</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Comprar</button>
                                         </div>
                                     </div>
                                     <div class="product">
@@ -282,19 +256,19 @@
                                             </div>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Category</p>
+                                            <p class="product-category">Categoria</p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-rating">
                                             </div>
                                             <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a favoritos</span></button>
+                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Añadir al Carrito</span></button>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Ver Árticulos</span></button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Comprar</button>
                                         </div>
                                     </div>
                                     <div class="product">
