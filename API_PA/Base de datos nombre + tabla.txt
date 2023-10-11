@@ -1,0 +1,89 @@
+Nombre de la DB: PA
+Nombre de la Tabla: TUsuario
+
+ConUsuario: bigint, not null, (llave primaria y identitity specification yes)
+Identificacion: varchar 20, not null
+Nombre: varchar 100, not null
+Correo: varchar 50, not null
+Contrasena: varchar 25, not null
+Estado: bit, not null
+Direccion: varchar 500, not null
+
+ALTER TABLE TUsuario
+ADD CONSTRAINT UK_Identificacion UNIQUE (Identificacion);
+
+============================================
+
+USE [PA]
+GO
+
+/****** Object:  Table [dbo].[TUsuario]    Script Date: 07-Oct-23 13:19:10 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TUsuario](
+	[ConUsuario] [bigint] IDENTITY(1,1) NOT NULL,
+	[Identificacion] [varchar](20) NOT NULL,
+	[Nombre] [varchar](100) NOT NULL,
+	[Correo] [varchar](100) NOT NULL,
+	[Contrasenna] [varchar](20) NOT NULL,
+	[Estado] [bit] NOT NULL,
+	[Direccion] [varchar](500) NOT NULL,
+ CONSTRAINT [PK_TUsuario] PRIMARY KEY CLUSTERED 
+(
+	[ConUsuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UK_Identificacion] UNIQUE NONCLUSTERED 
+(
+	[Identificacion] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+==========================================
+
+New entity data model
+Server name: PC\SQLEXPRESS
+
+==========================================
+
+CREATE PROCEDURE RegistrarCuentaSP
+	@Identificacion varchar(25),
+	@Nombre			varchar(100),
+	@Correo			varchar(100),
+	@Contrasena		varchar(25),
+	@Estado			bit,
+	@Direccion		varchar(500)
+AS
+BEGIN
+
+	INSERT INTO dbo.TUsuario (Identificacion, Nombre, Correo, Contrasena, Estado, Direccion)
+	VALUES (@Identificacion, @Nombre, @Correo, @Contrasena, @Estado, @Direccion)
+
+END
+GO
+
+
+CREATE PROCEDURE IniciarSesionSP
+	@Correo			varchar(100),
+	@Contrasena		varchar(25)
+AS
+BEGIN
+
+	SELECT ConUsuario,
+		   Identificacion,
+		   Nombre,
+		   Correo,
+		   Contrasena,
+		   Estado,
+		   Direccion
+	FROM dbo.TUsuario
+	WHERE  Correo = @Correo
+	AND	   Contrasena = @Contrasena
+	AND	   Estado = 1
+
+END
+GO
