@@ -11,9 +11,17 @@ namespace Proyecto_PA.Controllers
     public class LoginController : Controller
     {
         UsuarioModel usuarioModel = new UsuarioModel();
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            return RedirectToAction("IniciarSesion", "Login");
         }
 
 
@@ -26,22 +34,19 @@ namespace Proyecto_PA.Controllers
         [HttpPost]
         public ActionResult IniciarSesion(UsuarioEnt entidad)
         {
-            usuarioModel.IniciarSesion(entidad);
-            return View();
-        }
+            var resp = usuarioModel.IniciarSesion(entidad);
 
-
-        [HttpGet]
-        public ActionResult RecuperarCuenta()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult RecuperarCuenta(UsuarioEnt entidad)
-        {
-            usuarioModel.RecuperarCuenta(entidad);
-            return View();
+            if (resp != null)
+            {
+                Session["CodigoUsuario"] = resp.ConUsuario;
+                Session["NombreUsuario"] = resp.Nombre;
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "Compruebe la información de sus credenciales";
+                return View();
+            }
         }
 
 
@@ -54,8 +59,17 @@ namespace Proyecto_PA.Controllers
         [HttpPost]
         public ActionResult RegistrarCuenta(UsuarioEnt entidad)
         {
-            usuarioModel.RegistrarCuenta(entidad);
-            return View();
+            var resp = usuarioModel.RegistrarCuenta(entidad);
+
+            if (resp == "OK")
+            {
+                return RedirectToAction("IniciarSesion", "Login");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha registrado su información";
+                return View();
+            }
         }
 
     }
