@@ -9,6 +9,7 @@ namespace API_PA.Controllers
 {
     public class LoginController : ApiController
     {
+        Utilitarios util = new Utilitarios();
         [HttpPost]
         [Route("RegistrarCuenta")]
         public string RegistrarCuenta(UsuarioEnt entidad)
@@ -58,11 +59,11 @@ namespace API_PA.Controllers
         }
         [HttpPost]
         [Route("RecuperarCuenta")]
-        public void RecuperarCuenta (UsuarioEnt entidad)
+        public string RecuperarCuenta (UsuarioEnt entidad)
         {
             try
             {
-                using (var context = new BDMNEntities())
+                using (var context = new PAEntities())
                 {
                     var datos = (from x in context.TUsuario
                                  where x.Identificacion == entidad.Identificacion
@@ -74,7 +75,7 @@ namespace API_PA.Controllers
                         string html = File.ReadAllText(urlHtml);
 
                         html = html.Replace("@@Nombre", datos.Nombre);
-                        html = html.Replace("@@Contrasenna", datos.Contrasenna);
+                        html = html.Replace("@@Contrasenna", datos.Contrasena);
 
                         util.EnvioCorreos(datos.Correo, "Recuperar Contraseña", html);
                         return "OK";

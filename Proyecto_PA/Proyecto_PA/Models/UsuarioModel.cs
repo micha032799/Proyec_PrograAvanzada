@@ -1,8 +1,10 @@
-﻿using Proyecto_PA.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Web;
+using System.Web.Mvc;
+using Proyecto_PA.Entities;
 
 namespace Proyecto_PA.Models
 {
