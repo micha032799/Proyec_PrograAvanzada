@@ -63,7 +63,7 @@ namespace Proyecto_PA.Controllers
 
             if (resp == "OK")
             {
-                return RedirectToAction("IniciarSesion", "Login");
+                return RedirectToAction("Index", "Login");
             }
             else
             {
