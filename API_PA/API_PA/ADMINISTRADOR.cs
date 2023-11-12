@@ -12,17 +12,13 @@ namespace API_PA
     using System;
     using System.Collections.Generic;
     
-    public partial class TUsuario
+    public partial class ADMINISTRADOR
     {
-        public long ConUsuario { get; set; }
-        public string Identificacion { get; set; }
-        public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Contrasenna { get; set; }
-        public bool Estado { get; set; }
-        public string Direccion { get; set; }
-        public long ConRol { get; set; }
+        public int ID_USUARIO { get; set; }
+        public string NOMBRE_USUARIO { get; set; }
+        public string CONTRASENA { get; set; }
+        public Nullable<int> ID_CLIENTE { get; set; }
     
-        public virtual TRol TRol { get; set; }
+        public virtual CLIENTE CLIENTE { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace API_PA.Entities
 
             SmtpClient smtp = new SmtpClient();
             smtp.Port = 587;
-            smtp.Host = ConfigurationManager.AppSettings["servidorCorreo"];
+            smtp.Host = ConfigurationManager.AppSettings["servidorCorreoElectronico"];
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["cuentaCorreo"], ConfigurationManager.AppSettings["claveCorreo"]);

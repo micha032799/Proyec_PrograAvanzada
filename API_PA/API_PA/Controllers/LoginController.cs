@@ -28,7 +28,7 @@ namespace API_PA.Controllers
                     //context.TUsuario.Add(user);
                     //context.SaveChanges();
 
-                    context.RegistrarCuentaSP(entidad.Identificacion, entidad.Nombre, entidad.Correo, entidad.Contrasena, entidad.Estado, entidad.Direccion);
+                    context.RegistrarCuentaSP(entidad.Identificacion, entidad.Nombre, entidad.Correo, entidad.Contrasena);
 
                     return "Registro realizado exitosamente!";
                 }
@@ -75,7 +75,7 @@ namespace API_PA.Controllers
                         string html = File.ReadAllText(urlHtml);
 
                         html = html.Replace("@@Nombre", datos.Nombre);
-                        html = html.Replace("@@Contrasenna", datos.Contrasena);
+                        html = html.Replace("@@Contrasenna", datos.Contrasenna);
 
                         util.EnvioCorreos(datos.Correo, "Recuperar Contraseña", html);
                         return "OK";

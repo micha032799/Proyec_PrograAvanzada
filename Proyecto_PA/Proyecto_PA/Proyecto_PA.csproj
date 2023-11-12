@@ -152,6 +152,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1047,6 +1048,7 @@
     <Content Include="Views\Login\IniciarSesion.cshtml" />
     <Content Include="Views\Login\RecuperarCuenta.cshtml" />
     <Content Include="Views\Login\RegistrarCuenta.cshtml" />
+    <Content Include="Views\Usuario\PerfilUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,6 +26,8 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i> Sabana Sur</a></li>
                 </ul>
                 <ul class="header-links pull-right">
+
+
                     <li><a href="@Url.Action("IniciarSesion","Login")"><i class="fa fa-user-o"></i> Inciar Sesión</a></li>
                     <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
                 </ul>
@@ -43,6 +45,14 @@
                     </div>
                     <div class="col-md-6">
                         <div class="header-search">
+                            @if (Session["ConUsuario"] != null)
+                            {
+                                @Session["Nombre"]
+                            }
+
+
+                            &nbsp;&nbsp;&nbsp;
+
                             <form>
                                 <select class="input-select">
                                     <option value="0">Categorias</option>
@@ -57,9 +67,9 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
                             <div>
-                                <a href="#">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Favoritos</span>
+                                <a href="@Url.Action("PerfilUsuario","Usuario")">
+                                    <i class="fa fa-user-o"></i>
+                                    <span>Perfil usuario</span>
                                     <div class="qty">2</div>
                                 </a>
                             </div>

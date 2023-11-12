@@ -9,5 +9,7 @@
         public string Contrasena { get; set; }
         public bool Estado { get; set; }
         public string Direccion { get; set; }
+
+        
     }
 }

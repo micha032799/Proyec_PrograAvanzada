@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05501dc0c980401e97bc39e7f10754ef" Name="Diagram1">
+        <EntityTypeShape EntityType="PAModel.ADMINISTRADOR" Width="1.5" PointX="8.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.CARRITO" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.CLIENTE" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.DETALLE_ORDEN" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.DETALLE_PEDIDO" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.DETALLES_CARRITO" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.ORDEN" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.PEDIDOS" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.PRODUCTO" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.PRODUCTOS_ELECTRONICOS" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.PROMOCIONES" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.RESENAS" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.RESERVAS" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TRol" Width="1.5" PointX="8.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TUsuario" Width="1.5" PointX="11" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.VIDEOJUEGOS" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <AssociationConnector Association="PAModel.FK__ADMINISTR__ID_CL__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_CARRITOS_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_DETALLES_CARRITO_CARRITO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK__PRODUCTO__ID_CAT__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_PRODUCTOS_ELECTRONICOS_CATEGORIA" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_VIDEOJUEGOS_CATEGORIA" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK__ORDEN__ID_CLIENT__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_PEDIDOS_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_RESENAS_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_RESERVAS_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK__DETALLE_O__ID_OR__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK__DETALLE_O__ID_PR__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_DETALLE_PEDIDO_PEDIDO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_DETALLE_PEDIDO_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_DETALLES_CARRITO_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_RESENAS_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_RESERVAS_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_TUsuario_TUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.PRODUCTOS_PROMOCIONES" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

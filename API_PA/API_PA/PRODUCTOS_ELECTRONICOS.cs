@@ -12,17 +12,16 @@ namespace API_PA
     using System;
     using System.Collections.Generic;
     
-    public partial class TUsuario
+    public partial class PRODUCTOS_ELECTRONICOS
     {
-        public long ConUsuario { get; set; }
-        public string Identificacion { get; set; }
-        public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Contrasenna { get; set; }
-        public bool Estado { get; set; }
-        public string Direccion { get; set; }
-        public long ConRol { get; set; }
+        public int ID_PRODUCTO_ELECTRONICO { get; set; }
+        public string NOMBRE { get; set; }
+        public string DESCRIPCION { get; set; }
+        public decimal PRECIO { get; set; }
+        public int STOCK { get; set; }
+        public int ID_CATEGORIA { get; set; }
+        public int ID_PROVEEDOR { get; set; }
     
-        public virtual TRol TRol { get; set; }
+        public virtual CATEGORIA CATEGORIA { get; set; }
     }
 }
