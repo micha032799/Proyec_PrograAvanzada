@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace API_PA.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : ApiController
     {
-        [HttpGet]
-        [Route("ConsultaRol")]
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("ConsultaRol")]
         public List<System.Web.Mvc.SelectListItem> ConsultaRol()
         {
             try

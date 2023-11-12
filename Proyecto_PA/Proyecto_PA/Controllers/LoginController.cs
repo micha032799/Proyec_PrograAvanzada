@@ -61,7 +61,7 @@ namespace Proyecto_PA.Controllers
         {
             var resp = usuarioModel.RegistrarCuenta(entidad);
 
-            if (resp == "OK")
+            if (resp == "Registro realizado exitosamente!")
             {
                 return RedirectToAction("Index", "Login");
             }
