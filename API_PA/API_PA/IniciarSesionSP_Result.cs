@@ -20,5 +20,6 @@ namespace API_PA
         public string Contrasenna { get; set; }
         public bool Estado { get; set; }
         public string Direccion { get; set; }
+        public string Descripcion_Rol { get; set; }
     }
 }

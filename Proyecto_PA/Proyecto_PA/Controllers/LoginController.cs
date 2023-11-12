@@ -21,7 +21,7 @@ namespace Proyecto_PA.Controllers
         public ActionResult CerrarSesion()
         {
             Session.Clear();
-            return RedirectToAction("IniciarSesion", "Login");
+            return RedirectToAction("Index", "Login");
         }
 
 

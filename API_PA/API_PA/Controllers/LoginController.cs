@@ -28,7 +28,7 @@ namespace API_PA.Controllers
                     //context.TUsuario.Add(user);
                     //context.SaveChanges();
 
-                    context.RegistrarCuentaSP(entidad.Identificacion, entidad.Nombre, entidad.Correo, entidad.Contrasena);
+                    context.RegistrarCuentaSP(entidad.Identificacion, entidad.Nombre, entidad.Correo, entidad.Contrasenna,entidad.Direccion);
 
                     return "Registro realizado exitosamente!";
                 }
@@ -50,7 +50,7 @@ namespace API_PA.Controllers
                     //             && x.Estado == true
                     //             select x).FirstOrDefault();
 
-                    return context.IniciarSesionSP(entidad.Correo, entidad.Contrasena).FirstOrDefault();
+                    return context.IniciarSesionSP(entidad.Correo, entidad.Contrasenna).FirstOrDefault();
                 }
             }
             catch (Exception){

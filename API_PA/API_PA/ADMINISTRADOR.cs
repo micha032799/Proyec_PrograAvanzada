@@ -16,7 +16,7 @@ namespace API_PA
     {
         public int ID_USUARIO { get; set; }
         public string NOMBRE_USUARIO { get; set; }
-        public string CONTRASENA { get; set; }
+        public string CONTRASENNA { get; set; }
         public Nullable<int> ID_CLIENTE { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
