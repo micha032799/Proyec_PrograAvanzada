@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API_PA.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -34,5 +35,76 @@ namespace API_PA.Controllers
                 return new List<System.Web.Mvc.SelectListItem>();
             }
         }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("ConsultaUsuarios")]
+        public List<TUsuario> ConsultaUsuarios()
+        {
+            try
+            {
+                using (var context = new PAEntities())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    return (from x in context.TUsuario
+                                 select x).ToList();
+                    
+                }
+            }
+            catch (Exception)
+            {
+                return new List<TUsuario>();
+            }
+        }
+
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("ConsultaUsuario")]
+        public TUsuario ConsultaUsuario(long ConUsuario)
+        {
+            try
+            {
+                using (var context = new PAEntities())
+                {
+                    context.Configuration.LazyLoadingEnabled = false;
+                    return (from x in context.TUsuario
+                                 where x.ConUsuario == ConUsuario
+                                 select x).FirstOrDefault();  
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.Route("ActualizarUsuario")]
+        public string ActualizarUsuario(UsuarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new PAEntities())
+                {
+                    var datos = (from x in context.TUsuario
+                                 where x.ConUsuario == entidad.ConUsuario
+                                 select x).FirstOrDefault();
+
+                    if (datos != null)
+                    {
+                        datos.Correo = entidad.Correo;
+                        datos.Nombre = entidad.Nombre;
+                        datos.Identificacion = entidad.Identificacion;
+                        datos.ConRol = entidad.DescripcionRol;
+                        context.SaveChanges();
+                    }
+
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+
     }
 }

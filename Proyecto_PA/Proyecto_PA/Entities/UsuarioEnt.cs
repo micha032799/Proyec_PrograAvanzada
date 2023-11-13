@@ -15,7 +15,7 @@ namespace Proyecto_PA.Entities
         public bool Estado { get; set; }
         public string Direccion { get; set; }
 
-        public string DescripcionRol { get; set; }
+        public long DescripcionRol { get; set; }
 
     }
 }

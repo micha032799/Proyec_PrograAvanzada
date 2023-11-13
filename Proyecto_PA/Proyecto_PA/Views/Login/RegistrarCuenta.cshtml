@@ -15,13 +15,21 @@
                     <img src="~/template/images/logo.svg" alt="logo">
                 </div>
                 <h3 class="card-title text-left mb-3">Registrar Cuenta</h3>
+
+                @if (ViewBag.MensajeUsuario != null)
+                {
+                    <div class="alert alert-info" role="alert" style="text-align:center">
+                        @ViewBag.MensajeUsuario
+                    </div>
+                }
+
                 @using (Html.BeginForm("RegistrarCuenta", "Login", FormMethod.Post, new { @class = "pt-3" }))
                 {
                     <div class="form-group">
-                        @Html.TextBoxFor(m => m.Identificacion, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Identificación" })
+                        @Html.TextBoxFor(m => m.Identificacion, new { @onkeyup = "ConsultarNombre()", @class = "form-control form-control-lg", @type = "text", @placeholder = "Identificación" })
                     </div>
                     <div class="form-group">
-                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Nombre" })
+                        @Html.TextBoxFor(m => m.Nombre, new { @readonly = "@readonly", style = "background-color:#eeeeee", @class = "form-control form-control-lg", @type = "text", @placeholder = "Nombre" })
                     </div>
                     <div class="form-group">
                         @Html.TextBoxFor(m => m.Correo, new { @class = "form-control form-control-lg", @type = "email", @placeholder = "Correo Electronico" })
@@ -48,3 +56,5 @@
         </div>
     </div>
 </div>
+
+<script src="~/Funciones/ConsultarNombre.js"></script>

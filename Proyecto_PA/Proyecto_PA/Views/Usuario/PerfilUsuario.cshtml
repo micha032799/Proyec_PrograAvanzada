@@ -12,13 +12,21 @@
                     <img src="~/template/images/logo.svg" alt="logo">
                 </div>
                 <h3 class="card-title text-left mb-3">Perfil de Usuario</h3>
+
+                @if (ViewBag.MensajeUsuario != null)
+                {
+                    <div class="alert alert-info" role="alert" style="text-align:center">
+                        @ViewBag.MensajeUsuario
+                    </div>
+                }
+
                 @using (Html.BeginForm("PerfilUsuario", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
                 {
                     <div class="form-group">
-                        @Html.TextBoxFor(m => m.Identificacion, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Identificación" })
+                        @Html.TextBoxFor(m => m.Identificacion, new { @onkeyup = "ConsultarNombre()", @class = "form-control form-control-lg", @type = "text", @placeholder = "Identificación" })
                     </div>
                     <div class="form-group">
-                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Nombre" })
+                        @Html.TextBoxFor(m => m.Nombre, new { @readonly = "@readonly", @class = "form-control form-control-lg", @type = "text", @placeholder = "Nombre" })
                     </div>
                     <div class="form-group">
                         @Html.TextBoxFor(m => m.Correo, new { @class = "form-control form-control-lg", @type = "email", @placeholder = "Correo Electronico" })
@@ -29,7 +37,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.DropDownListFor(m => m.DescripcionRol, ViewBag.Rol as List<SelectListItem>,new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Rol" })
+                        @Html.DropDownListFor(m => m.DescripcionRol, ViewBag.Rol as List<SelectListItem>, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Rol" })
                     </div>
 
                     <div class="mt-3">
@@ -41,3 +49,5 @@
         </div>
     </div>
 </div>
+
+<script src="~/Funciones/ConsultarNombre.js"></script>

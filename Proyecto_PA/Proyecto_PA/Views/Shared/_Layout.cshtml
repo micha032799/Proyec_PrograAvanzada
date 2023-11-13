@@ -30,6 +30,13 @@
 
                     <li><a href="@Url.Action("IniciarSesion","Login")"><i class="fa fa-user-o"></i> Inciar Sesión</a></li>
                     <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
+
+
+                    @if (Session["NombreUsuario"] != null)
+                    {
+                        <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
+                    }
+
                 </ul>
             </div>
         </div>
@@ -302,8 +309,7 @@
                                             <div class="product-btns">
                                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a favoritos</span></button>
                                                 <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Añadir al Carrito</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp" Ver Árticulos</span></button>
-                                            </div>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp" title="Ver Árticulos"> Ver Árticulos </span></button>                                            </div>
                                         </div>
                                         <div class="add-to-cart">
                                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Comprar</button>
