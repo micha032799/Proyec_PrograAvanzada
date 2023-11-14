@@ -22,6 +22,8 @@
 
                 @using (Html.BeginForm("PerfilUsuario", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
                 {
+                    @Html.HiddenFor(m => m.ConUsuario)
+
                     <div class="form-group">
                         @Html.TextBoxFor(m => m.Identificacion, new { @onkeyup = "ConsultarNombre()", @class = "form-control form-control-lg", @type = "text", @placeholder = "Identificación" })
                     </div>

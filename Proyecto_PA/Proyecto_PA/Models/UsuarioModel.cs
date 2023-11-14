@@ -75,11 +75,11 @@ namespace Proyecto_PA.Models
             }
         }
 
-        public string ActualizarCuenta(UsuarioEnt entidad)
+        public string ActualizarUsuario(UsuarioEnt entidad)
         {
             using (var client = new HttpClient())
             {
-                string url = urlApi + "ActualizarCuenta";
+                string url = urlApi + "ActualizarUsuario";
                 JsonContent contenido = JsonContent.Create(entidad);
                 var resp = client.PutAsync(url, contenido).Result;
                 return resp.Content.ReadFromJsonAsync<string>().Result;

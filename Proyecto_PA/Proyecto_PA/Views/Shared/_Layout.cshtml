@@ -27,9 +27,16 @@
                 </ul>
                 <ul class="header-links pull-right">
 
+                    @if (Session["CodigoUsuario"] != null)
+                    {
+                        <li><a href="@Url.Action("CerrarSesion", "Login")"><i class="fa fa-sign-out"></i> Cerrar Sesión</a></li>
 
-                    <li><a href="@Url.Action("IniciarSesion","Login")"><i class="fa fa-user-o"></i> Inciar Sesión</a></li>
-                    <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("IniciarSesion", "Login")"><i class="fa fa-user-o"></i> Iniciar Sesión</a></li>
+                        <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
+                    }
 
 
                     @if (Session["NombreUsuario"] != null)
@@ -434,7 +441,7 @@
                                             <img src="~/template/img/product01.png" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Categorias</p>
+                                            <p class="product-category">Categoria</p>
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                             <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                             <div class="product-btns">
@@ -625,7 +632,7 @@
                                     <img src="~/template/img/product01.png" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">Categoria</p>
                                     <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
@@ -635,7 +642,7 @@
                                     <img src="~/template/img/product02.png" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">Categoria</p>
                                     <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
@@ -645,7 +652,7 @@
                                     <img src="~/template/img/product03.png" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">Categoria</p>
                                     <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
@@ -657,7 +664,7 @@
                                     <img src="~/template/img/product04.png" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">Categoria</p>
                                     <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
@@ -667,7 +674,7 @@
                                     <img src="~/template/img/product05.png" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">Categoria</p>
                                     <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
@@ -677,7 +684,7 @@
                                     <img src="~/template/img/product06.png" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">Category</p>
+                                    <p class="product-category">Categoria</p>
                                     <h3 class="product-name"><a href="#">product name goes here</a></h3>
                                     <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                                 </div>
@@ -706,7 +713,7 @@
                         </div>
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
-                                <h3 class="footer-title">Categories</h3>
+                                <h3 class="footer-title">Categorias</h3>
                                 <ul class="footer-links">
                                     <li><a href="#">Ofertas</a></li>
                                     <li><a href="#">Nuevos productos</a></li>
@@ -735,10 +742,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <span class="copyright">
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> Todos los derechos son reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        </span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © @DateTime.Now.Year. Derechos Reservados.</span>
                     </div>
                 </div>
             </div>

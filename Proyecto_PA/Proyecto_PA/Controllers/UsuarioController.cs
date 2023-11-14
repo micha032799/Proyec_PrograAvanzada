@@ -25,12 +25,12 @@ namespace Proyecto_PA.Controllers
         [HttpPost]
         public ActionResult PerfilUsuario(UsuarioEnt entidad)
         {
-            var resp = usuarioModel.ActualizarCuenta(entidad);
+            var resp = usuarioModel.ActualizarUsuario(entidad);
 
             if (resp == "OK")
             {
-                Session["Nombre"] = entidad.Nombre;
-                return RedirectToAction("Index", "Login");
+                Session["NombreUsuario"] = entidad.Nombre;
+                return RedirectToAction("PerfilUsuario", "Usuario");
             }
             else
             {

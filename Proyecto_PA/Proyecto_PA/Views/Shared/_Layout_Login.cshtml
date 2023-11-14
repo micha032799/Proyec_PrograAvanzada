@@ -26,8 +26,22 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i> Sabana Sur</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    <li><a href="@Url.Action("IniciarSesion","Login")"><i class="fa fa-user-o"></i> Inciar Sesión</a></li>
-                    <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
+                    @if (Session["CodigoUsuario"] != null)
+                    {
+                        <li><a href="@Url.Action("CerrarSesion", "Login")"><i class="fa fa-sign-out"></i> Cerrar Sesión</a></li>
+
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("IniciarSesion", "Login")"><i class="fa fa-user-o"></i> Iniciar Sesión</a></li>
+                        <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
+                    }
+
+
+                    @if (Session["NombreUsuario"] != null)
+                    {
+                        <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
+                    }
                 </ul>
             </div>
         </div>
@@ -63,7 +77,6 @@
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
                                 <h3 class="footer-title">Sobre Nosotros</h3>
-                                <p> En frente del Cotepecos Sabana Sur, San José, Costa Rica</p>
                                 <ul class="footer-links">
                                     <li><a href="#"><i class="fa fa-map-marker"></i> En frente del Cotepecos Sabana Sur, San José, Costa Rica</a></li>
                                     <li><a href="#"><i class="fa fa-phone"></i>+506 86077091</a></li>
@@ -73,7 +86,7 @@
                         </div>
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
-                                <h3 class="footer-title">Categories</h3>
+                                <h3 class="footer-title">Categorias</h3>
                                 <ul class="footer-links">
                                     <li><a href="#">Ofertas</a></li>
                                     <li><a href="#">Nuevos productos</a></li>
@@ -102,10 +115,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <span class="copyright">
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> Todos los derechos son reservados <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        </span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © @DateTime.Now.Year. Derechos Reservados.</span>
                     </div>
                 </div>
             </div>
