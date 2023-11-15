@@ -86,11 +86,10 @@ namespace API_PA.Controllers
                 {
                     var datos = (from x in context.TUsuario
                                  where x.ConUsuario == entidad.ConUsuario
-                                 select x).FirstOrDefault();
+                                 select x).FirstOrDefault(); 
 
                     if (datos != null)
                     {
-                        datos.ConUsuario = entidad.ConUsuario;
                         datos.Identificacion = entidad.Identificacion;
                         datos.Nombre = entidad.Nombre;
                         datos.Correo = entidad.Correo;
