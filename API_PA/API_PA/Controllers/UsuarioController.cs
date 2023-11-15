@@ -76,8 +76,8 @@ namespace API_PA.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("ActualizarUsuario")]
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.Route("ActualizarUsuario")]
         public string ActualizarUsuario(UsuarioEnt entidad)
         {
             try
@@ -90,9 +90,10 @@ namespace API_PA.Controllers
 
                     if (datos != null)
                     {
-                        datos.Correo = entidad.Correo;
-                        datos.Nombre = entidad.Nombre;
+                        datos.ConUsuario = entidad.ConUsuario;
                         datos.Identificacion = entidad.Identificacion;
+                        datos.Nombre = entidad.Nombre;
+                        datos.Correo = entidad.Correo;
                         datos.Direccion = entidad.Direccion;
                         datos.ConRol = entidad.DescripcionRol;
                         context.SaveChanges();

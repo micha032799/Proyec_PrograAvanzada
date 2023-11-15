@@ -17,9 +17,9 @@ namespace Proyecto_PA.Controllers
         [HttpGet]
         public ActionResult PerfilUsuario()
         {
-            var datos = usuarioModel.ConsultaUsuario();
+             var datos = usuarioModel.ConsultaUsuario();
             ViewBag.Rol = usuarioModel.ConsultaRol();
-            return View();
+            return View(datos);
         }
 
         [HttpPost]
@@ -43,7 +43,8 @@ namespace Proyecto_PA.Controllers
         [HttpGet]
         public ActionResult ConsultaUsuarios()
         {
-            var datos = usuarioModel.ConsultaUsuarios();
+            long ConUsuario = long.Parse(Session["CodigoUsuario"].ToString());
+            var datos = usuarioModel.ConsultaUsuarios().Where(x => x.ConUsuario != ConUsuario).ToList();
             return View(datos);
         }
     }
