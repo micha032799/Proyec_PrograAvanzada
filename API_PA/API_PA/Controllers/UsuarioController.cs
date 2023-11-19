@@ -107,5 +107,32 @@ namespace API_PA.Controllers
             }
         }
 
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.Route("ActualizarEstadoUsuario")]
+        public string ActualizarEstadoUsuario(UsuarioEnt entidad)
+        {
+            try
+            {
+                using (var context = new PAEntities())
+                {
+                    var datos = (from x in context.TUsuario
+                                 where x.ConUsuario == entidad.ConUsuario
+                                 select x).FirstOrDefault();
+
+                    if (datos != null)
+                    {
+                        datos.Estado = (datos.Estado == true ? false : true);
+                        context.SaveChanges();
+                    }
+
+                    return "OK";
+                }
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+
     }
 }

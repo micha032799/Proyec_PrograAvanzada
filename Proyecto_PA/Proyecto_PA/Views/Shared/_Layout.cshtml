@@ -14,6 +14,7 @@
     <link type="text/css" rel="stylesheet" href="~/template/css/nouislider.min.css" />
     <link rel="stylesheet" href="~/template/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="~/template/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 
 </head>
 <body>
@@ -27,7 +28,7 @@
                 </ul>
                 <ul class="header-links pull-right">
 
-                    @if (Session["CodigoUsuario"] != null)
+                    @if (Session["ConUsuario"] != null)
                     {
                         <li><a href="@Url.Action("CerrarSesion", "Login")"><i class="fa fa-sign-out"></i> Cerrar Sesión</a></li>
 
@@ -39,9 +40,10 @@
                     }
 
 
-                    @if (Session["NombreUsuario"] != null)
+                    @if (Session["Nombre"] != null)
                     {
                         <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
+                        <li><a href="@Url.Action("ConsultarProductos","Producto")"><i class="fa fa-cog"></i>Consultar Productos</a></li>
                     }
 
                 </ul>
@@ -59,7 +61,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="header-search">
-                            @if (Session["CodigoUsuario"] != null)
+                            @if (Session["ConUsuario"] != null)
                             {
                                 @Session["Nombre"]
                             }
@@ -81,7 +83,7 @@
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
 
-                            @if (Session["NombreUsuario"] != null)
+                            @if (Session["Nombre"] != null)
                             {
                                 <div>
                                     <a href="@Url.Action("PerfilUsuario","Usuario")">

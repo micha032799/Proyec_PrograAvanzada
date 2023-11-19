@@ -65,11 +65,11 @@ namespace Proyecto_PA.Models
             }
         }
 
-        public UsuarioEnt ConsultaUsuario()
+        public UsuarioEnt ConsultaUsuario(long ConUsuario)
         {
             using (var client = new HttpClient())
             {
-                var url = urlApi + "ConsultaUsuario?ConUsuario=" + HttpContext.Current.Session["CodigoUsuario"];
+                var url = urlApi + "ConsultaUsuario?ConUsuario=" + ConUsuario;
                 var res = client.GetAsync(url).Result;
                 return res.Content.ReadFromJsonAsync<UsuarioEnt>().Result;
             }
@@ -80,6 +80,17 @@ namespace Proyecto_PA.Models
             using (var client = new HttpClient())
             {
                 string url = urlApi + "ActualizarUsuario";
+                JsonContent contenido = JsonContent.Create(entidad);
+                var resp = client.PutAsync(url, contenido).Result;
+                return resp.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
+
+        public string ActualizarEstadoUsuario(UsuarioEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = urlApi + "ActualizarEstadoUsuario";
                 JsonContent contenido = JsonContent.Create(entidad);
                 var resp = client.PutAsync(url, contenido).Result;
                 return resp.Content.ReadFromJsonAsync<string>().Result;
