@@ -26,7 +26,7 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i> Sabana Sur</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                    @if (Session["CodigoUsuario"] != null)
+                    @if (Session["ConUsuario"] != null)
                     {
                         <li><a href="@Url.Action("CerrarSesion", "Login")"><i class="fa fa-sign-out"></i> Cerrar Sesión</a></li>
 
@@ -38,9 +38,10 @@
                     }
 
 
-                    @if (Session["NombreUsuario"] != null)
+                    @if (Session["Nombre"] != null)
                     {
                         <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
+                        <li><a href="@Url.Action("ConsultarProductos","Producto")"><i class="fa fa-cog"></i>Consultar Productos</a></li>
                     }
                 </ul>
             </div>
