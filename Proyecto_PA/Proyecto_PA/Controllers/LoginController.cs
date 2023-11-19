@@ -38,8 +38,8 @@ namespace Proyecto_PA.Controllers
 
             if (resp != null)
             {
-                Session["CodigoUsuario"] = resp.ConUsuario;
-                Session["NombreUsuario"] = resp.Nombre;
+                Session["ConUsuario"] = resp.ConUsuario;
+                Session["Nombre"] = resp.Nombre;
                 return RedirectToAction("Index", "Login");
             }
             else

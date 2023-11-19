@@ -17,7 +17,8 @@ namespace Proyecto_PA.Controllers
         [HttpGet]
         public ActionResult PerfilUsuario()
         {
-             var datos = usuarioModel.ConsultaUsuario();
+            long ConUsuario = long.Parse(Session["ConUsuario"].ToString());
+            var datos = usuarioModel.ConsultaUsuario(ConUsuario);
             ViewBag.Rol = usuarioModel.ConsultaRol();
             return View(datos);
         }
@@ -29,7 +30,7 @@ namespace Proyecto_PA.Controllers
 
             if (resp == "OK")
             {
-                Session["NombreUsuario"] = entidad.Nombre;
+                Session["Nombre"] = entidad.Nombre;
                 return RedirectToAction("PerfilUsuario", "Usuario");
             }
             else
@@ -43,9 +44,52 @@ namespace Proyecto_PA.Controllers
         [HttpGet]
         public ActionResult ConsultaUsuarios()
         {
-            long ConUsuario = long.Parse(Session["CodigoUsuario"].ToString());
+            long ConUsuario = long.Parse(Session["ConUsuario"].ToString());
             var datos = usuarioModel.ConsultaUsuarios().Where(x => x.ConUsuario != ConUsuario).ToList();
             return View(datos);
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarEstadoUsuario(long ConUsuario)
+        {
+            var entidad = new UsuarioEnt();
+            entidad.ConUsuario = ConUsuario;
+
+            var resp = usuarioModel.ActualizarEstadoUsuario(entidad);
+
+            if (resp == "OK")
+            {
+                return RedirectToAction("ConsultaUsuarios", "Usuario");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se pudo actualizar el estado del usuario";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarUsuario(long ConUsuario)
+        {
+            ViewBag.Rol = usuarioModel.ConsultaRol();
+            var datos = usuarioModel.ConsultaUsuario(ConUsuario);
+            return View(datos);
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarUsuario(UsuarioEnt entidad)
+        {
+            var resp = usuarioModel.ActualizarUsuario(entidad);
+
+            if (resp == "OK")
+            {
+                return RedirectToAction("ConsultaUsuarios", "Usuario");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se pudo actualizar el estado del usuario";
+                return View();
+            }
         }
     }
 }

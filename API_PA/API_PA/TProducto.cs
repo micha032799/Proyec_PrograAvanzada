@@ -10,10 +10,16 @@
 namespace API_PA
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class TProducto
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public long ConProducto { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Precio { get; set; }
+        public int Cantidad { get; set; }
+        public string Imagen { get; set; }
+        public bool Estado { get; set; }
     }
 }
