@@ -5,15 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="PAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ADMINISTRADOR">
-          <Key>
-            <PropertyRef Name="ID_USUARIO" />
-          </Key>
-          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
-          <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CONTRASENNA" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="ID_CLIENTE" Type="int" />
-        </EntityType>
         <EntityType Name="CARRITO">
           <Key>
             <PropertyRef Name="ID_CARRITO" />
@@ -100,58 +91,6 @@
           <Property Name="STOCK" Type="int" Nullable="false" />
           <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="PRODUCTOS_ELECTRONICOS">
-          <Key>
-            <PropertyRef Name="ID_PRODUCTO_ELECTRONICO" />
-          </Key>
-          <Property Name="ID_PRODUCTO_ELECTRONICO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="varchar" MaxLength="500" />
-          <Property Name="PRECIO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="STOCK" Type="int" Nullable="false" />
-          <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
-          <Property Name="ID_PROVEEDOR" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PRODUCTOS_PROMOCIONES">
-          <Key>
-            <PropertyRef Name="ID_PRODUCTO" />
-            <PropertyRef Name="ID_PROMOCION" />
-          </Key>
-          <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
-          <Property Name="ID_PROMOCION" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PROMOCIONES">
-          <Key>
-            <PropertyRef Name="ID_PROMOCION" />
-          </Key>
-          <Property Name="ID_PROMOCION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="varchar" MaxLength="500" />
-          <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
-          <Property Name="FECHA_FIN" Type="date" Nullable="false" />
-          <Property Name="DESCUENTO" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RESENAS">
-          <Key>
-            <PropertyRef Name="ID_RESENA" />
-          </Key>
-          <Property Name="ID_RESENA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
-          <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
-          <Property Name="CALIFICACION" Type="int" Nullable="false" />
-          <Property Name="COMENTARIO" Type="varchar" MaxLength="500" />
-          <Property Name="FECHA_RESENA" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RESERVAS">
-          <Key>
-            <PropertyRef Name="ID_RESERVA" />
-          </Key>
-          <Property Name="ID_RESERVA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
-          <Property Name="ID_PRODUCTO" Type="int" Nullable="false" />
-          <Property Name="FECHA_RESERVA" Type="date" Nullable="false" />
-          <Property Name="CANTIDAD" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -162,8 +101,8 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TProducto">
           <Key>
             <PropertyRef Name="ConProducto" />
@@ -202,31 +141,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <Property Name="Direccion" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="ConRol" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="VIDEOJUEGOS">
-          <Key>
-            <PropertyRef Name="ID_VIDEOJUEGO" />
-          </Key>
-          <Property Name="ID_VIDEOJUEGO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="PLATAFORMA" Type="varchar" MaxLength="50" />
-          <Property Name="GENERO" Type="varchar" MaxLength="50" />
-          <Property Name="PRECIO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="STOCK" Type="int" Nullable="false" />
-          <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
-          <Property Name="ID_PROVEEDOR" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__ADMINISTR__ID_CL__44FF419A">
-          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
-          <End Role="ADMINISTRADOR" Type="Self.ADMINISTRADOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENTE">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="ADMINISTRADOR">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__DETALLE_O__ID_OR__412EB0B6">
           <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="0..1" />
           <End Role="DETALLE_ORDEN" Type="Self.DETALLE_ORDEN" Multiplicity="*" />
@@ -347,90 +261,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PRODUCTOS_ELECTRONICOS_CATEGORIA">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
-          <End Role="PRODUCTOS_ELECTRONICOS" Type="Self.PRODUCTOS_ELECTRONICOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Principal>
-            <Dependent Role="PRODUCTOS_ELECTRONICOS">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRODUCTOS_PROMOCIONES_PRODUCTO">
-          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
-          <End Role="PRODUCTOS_PROMOCIONES" Type="Self.PRODUCTOS_PROMOCIONES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Principal>
-            <Dependent Role="PRODUCTOS_PROMOCIONES">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRODUCTOS_PROMOCIONES_PROMOCION">
-          <End Role="PROMOCIONES" Type="Self.PROMOCIONES" Multiplicity="1" />
-          <End Role="PRODUCTOS_PROMOCIONES" Type="Self.PRODUCTOS_PROMOCIONES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PROMOCIONES">
-              <PropertyRef Name="ID_PROMOCION" />
-            </Principal>
-            <Dependent Role="PRODUCTOS_PROMOCIONES">
-              <PropertyRef Name="ID_PROMOCION" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RESENAS_CLIENTE">
-          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
-          <End Role="RESENAS" Type="Self.RESENAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENTE">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="RESENAS">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RESENAS_PRODUCTO">
-          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
-          <End Role="RESENAS" Type="Self.RESENAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Principal>
-            <Dependent Role="RESENAS">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RESERVAS_CLIENTE">
-          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
-          <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENTE">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="RESERVAS">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RESERVAS_PRODUCTO">
-          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
-          <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Principal>
-            <Dependent Role="RESERVAS">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TUsuario_TUsuario">
           <End Role="TRol" Type="Self.TRol" Multiplicity="1" />
           <End Role="TUsuario" Type="Self.TUsuario" Multiplicity="*" />
@@ -440,18 +270,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             </Principal>
             <Dependent Role="TUsuario">
               <PropertyRef Name="ConRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VIDEOJUEGOS_CATEGORIA">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
-          <End Role="VIDEOJUEGOS" Type="Self.VIDEOJUEGOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Principal>
-            <Dependent Role="VIDEOJUEGOS">
-              <PropertyRef Name="ID_CATEGORIA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -498,7 +316,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="PAModelStoreContainer">
-          <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
@@ -508,15 +325,9 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <EntitySet Name="ORDEN" EntityType="Self.ORDEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEDIDOS" EntityType="Self.PEDIDOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PRODUCTOS_ELECTRONICOS" EntityType="Self.PRODUCTOS_ELECTRONICOS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PRODUCTOS_PROMOCIONES" EntityType="Self.PRODUCTOS_PROMOCIONES" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PROMOCIONES" EntityType="Self.PROMOCIONES" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RESENAS" EntityType="Self.RESENAS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RESERVAS" EntityType="Self.RESERVAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRol" EntityType="Self.TRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TUsuario" EntityType="Self.TUsuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VIDEOJUEGOS" EntityType="Self.VIDEOJUEGOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TProducto" EntityType="Self.TProducto" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TProducto].[ConProducto] AS [ConProducto], 
@@ -528,10 +339,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
     [TProducto].[Estado] AS [Estado]
     FROM [dbo].[TProducto] AS [TProducto]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__ADMINISTR__ID_CL__44FF419A" Association="Self.FK__ADMINISTR__ID_CL__44FF419A">
-            <End Role="CLIENTE" EntitySet="CLIENTE" />
-            <End Role="ADMINISTRADOR" EntitySet="ADMINISTRADOR" />
-          </AssociationSet>
           <AssociationSet Name="FK__DETALLE_O__ID_OR__412EB0B6" Association="Self.FK__DETALLE_O__ID_OR__412EB0B6">
             <End Role="ORDEN" EntitySet="ORDEN" />
             <End Role="DETALLE_ORDEN" EntitySet="DETALLE_ORDEN" />
@@ -572,41 +379,9 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="PEDIDOS" EntitySet="PEDIDOS" />
           </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTOS_ELECTRONICOS_CATEGORIA" Association="Self.FK_PRODUCTOS_ELECTRONICOS_CATEGORIA">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="PRODUCTOS_ELECTRONICOS" EntitySet="PRODUCTOS_ELECTRONICOS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTOS_PROMOCIONES_PRODUCTO" Association="Self.FK_PRODUCTOS_PROMOCIONES_PRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-            <End Role="PRODUCTOS_PROMOCIONES" EntitySet="PRODUCTOS_PROMOCIONES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTOS_PROMOCIONES_PROMOCION" Association="Self.FK_PRODUCTOS_PROMOCIONES_PROMOCION">
-            <End Role="PROMOCIONES" EntitySet="PROMOCIONES" />
-            <End Role="PRODUCTOS_PROMOCIONES" EntitySet="PRODUCTOS_PROMOCIONES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RESENAS_CLIENTE" Association="Self.FK_RESENAS_CLIENTE">
-            <End Role="CLIENTE" EntitySet="CLIENTE" />
-            <End Role="RESENAS" EntitySet="RESENAS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RESENAS_PRODUCTO" Association="Self.FK_RESENAS_PRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-            <End Role="RESENAS" EntitySet="RESENAS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RESERVAS_CLIENTE" Association="Self.FK_RESERVAS_CLIENTE">
-            <End Role="CLIENTE" EntitySet="CLIENTE" />
-            <End Role="RESERVAS" EntitySet="RESERVAS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RESERVAS_PRODUCTO" Association="Self.FK_RESERVAS_PRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-            <End Role="RESERVAS" EntitySet="RESERVAS" />
-          </AssociationSet>
           <AssociationSet Name="FK_TUsuario_TUsuario" Association="Self.FK_TUsuario_TUsuario">
             <End Role="TRol" EntitySet="TRol" />
             <End Role="TUsuario" EntitySet="TUsuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VIDEOJUEGOS_CATEGORIA" Association="Self.FK_VIDEOJUEGOS_CATEGORIA">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="VIDEOJUEGOS" EntitySet="VIDEOJUEGOS" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -614,16 +389,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="ADMINISTRADOR">
-          <Key>
-            <PropertyRef Name="ID_USUARIO" />
-          </Key>
-          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
-          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CONTRASENNA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ID_CLIENTE" Type="Int32" />
-          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__ADMINISTR__ID_CL__44FF419A" FromRole="ADMINISTRADOR" ToRole="CLIENTE" />
-        </EntityType>
         <EntityType Name="CARRITO">
           <Key>
             <PropertyRef Name="ID_CARRITO" />
@@ -641,8 +406,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__PRODUCTO__ID_CAT__398D8EEE" FromRole="CATEGORIA" ToRole="PRODUCTO" />
-          <NavigationProperty Name="PRODUCTOS_ELECTRONICOS" Relationship="Self.FK_PRODUCTOS_ELECTRONICOS_CATEGORIA" FromRole="CATEGORIA" ToRole="PRODUCTOS_ELECTRONICOS" />
-          <NavigationProperty Name="VIDEOJUEGOS" Relationship="Self.FK_VIDEOJUEGOS_CATEGORIA" FromRole="CATEGORIA" ToRole="VIDEOJUEGOS" />
         </EntityType>
         <EntityType Name="CLIENTE">
           <Key>
@@ -654,12 +417,9 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ADMINISTRADOR" Relationship="Self.FK__ADMINISTR__ID_CL__44FF419A" FromRole="CLIENTE" ToRole="ADMINISTRADOR" />
           <NavigationProperty Name="CARRITO" Relationship="Self.FK_CARRITOS_CLIENTE" FromRole="CLIENTE" ToRole="CARRITO" />
           <NavigationProperty Name="ORDEN" Relationship="Self.FK__ORDEN__ID_CLIENT__3E52440B" FromRole="CLIENTE" ToRole="ORDEN" />
           <NavigationProperty Name="PEDIDOS" Relationship="Self.FK_PEDIDOS_CLIENTE" FromRole="CLIENTE" ToRole="PEDIDOS" />
-          <NavigationProperty Name="RESENAS" Relationship="Self.FK_RESENAS_CLIENTE" FromRole="CLIENTE" ToRole="RESENAS" />
-          <NavigationProperty Name="RESERVAS" Relationship="Self.FK_RESERVAS_CLIENTE" FromRole="CLIENTE" ToRole="RESERVAS" />
         </EntityType>
         <EntityType Name="DETALLE_ORDEN">
           <Key>
@@ -734,59 +494,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <NavigationProperty Name="DETALLE_ORDEN" Relationship="Self.FK__DETALLE_O__ID_PR__4222D4EF" FromRole="PRODUCTO" ToRole="DETALLE_ORDEN" />
           <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.FK_DETALLE_PEDIDO_PRODUCTO" FromRole="PRODUCTO" ToRole="DETALLE_PEDIDO" />
           <NavigationProperty Name="DETALLES_CARRITO" Relationship="Self.FK_DETALLES_CARRITO_PRODUCTO" FromRole="PRODUCTO" ToRole="DETALLES_CARRITO" />
-          <NavigationProperty Name="RESENAS" Relationship="Self.FK_RESENAS_PRODUCTO" FromRole="PRODUCTO" ToRole="RESENAS" />
-          <NavigationProperty Name="RESERVAS" Relationship="Self.FK_RESERVAS_PRODUCTO" FromRole="PRODUCTO" ToRole="RESERVAS" />
-          <NavigationProperty Name="PROMOCIONES" Relationship="Self.PRODUCTOS_PROMOCIONES" FromRole="PRODUCTO" ToRole="PROMOCIONES" />
-        </EntityType>
-        <EntityType Name="PRODUCTOS_ELECTRONICOS">
-          <Key>
-            <PropertyRef Name="ID_PRODUCTO_ELECTRONICO" />
-          </Key>
-          <Property Name="ID_PRODUCTO_ELECTRONICO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="PRECIO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="STOCK" Type="Int32" Nullable="false" />
-          <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
-          <Property Name="ID_PROVEEDOR" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_PRODUCTOS_ELECTRONICOS_CATEGORIA" FromRole="PRODUCTOS_ELECTRONICOS" ToRole="CATEGORIA" />
-        </EntityType>
-        <EntityType Name="PROMOCIONES">
-          <Key>
-            <PropertyRef Name="ID_PROMOCION" />
-          </Key>
-          <Property Name="ID_PROMOCION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DESCUENTO" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <NavigationProperty Name="PRODUCTO" Relationship="Self.PRODUCTOS_PROMOCIONES" FromRole="PROMOCIONES" ToRole="PRODUCTO" />
-        </EntityType>
-        <EntityType Name="RESENAS">
-          <Key>
-            <PropertyRef Name="ID_RESENA" />
-          </Key>
-          <Property Name="ID_RESENA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
-          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="CALIFICACION" Type="Int32" Nullable="false" />
-          <Property Name="COMENTARIO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="FECHA_RESENA" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_RESENAS_CLIENTE" FromRole="RESENAS" ToRole="CLIENTE" />
-          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_RESENAS_PRODUCTO" FromRole="RESENAS" ToRole="PRODUCTO" />
-        </EntityType>
-        <EntityType Name="RESERVAS">
-          <Key>
-            <PropertyRef Name="ID_RESERVA" />
-          </Key>
-          <Property Name="ID_RESERVA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
-          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="FECHA_RESERVA" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_RESERVAS_CLIENTE" FromRole="RESERVAS" ToRole="CLIENTE" />
-          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_RESERVAS_PRODUCTO" FromRole="RESERVAS" ToRole="PRODUCTO" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -820,20 +527,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <Property Name="ConRol" Type="Int64" Nullable="false" />
           <NavigationProperty Name="TRol" Relationship="Self.FK_TUsuario_TUsuario" FromRole="TUsuario" ToRole="TRol" />
         </EntityType>
-        <EntityType Name="VIDEOJUEGOS">
-          <Key>
-            <PropertyRef Name="ID_VIDEOJUEGO" />
-          </Key>
-          <Property Name="ID_VIDEOJUEGO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PLATAFORMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="GENERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PRECIO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="STOCK" Type="Int32" Nullable="false" />
-          <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
-          <Property Name="ID_PROVEEDOR" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_VIDEOJUEGOS_CATEGORIA" FromRole="VIDEOJUEGOS" ToRole="CATEGORIA" />
-        </EntityType>
         <EntityType Name="TProducto">
           <Key>
             <PropertyRef Name="ConProducto" />
@@ -852,18 +545,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
         </EntityType>
-        <Association Name="FK__ADMINISTR__ID_CL__44FF419A">
-          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
-          <End Role="ADMINISTRADOR" Type="Self.ADMINISTRADOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENTE">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="ADMINISTRADOR">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CARRITOS_CLIENTE">
           <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
           <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
@@ -900,30 +581,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PRODUCTOS_ELECTRONICOS_CATEGORIA">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
-          <End Role="PRODUCTOS_ELECTRONICOS" Type="Self.PRODUCTOS_ELECTRONICOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Principal>
-            <Dependent Role="PRODUCTOS_ELECTRONICOS">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VIDEOJUEGOS_CATEGORIA">
-          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
-          <End Role="VIDEOJUEGOS" Type="Self.VIDEOJUEGOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Principal>
-            <Dependent Role="VIDEOJUEGOS">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ORDEN__ID_CLIENT__3E52440B">
           <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
           <End Role="ORDEN" Type="Self.ORDEN" Multiplicity="*" />
@@ -944,30 +601,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
               <PropertyRef Name="ID_CLIENTE" />
             </Principal>
             <Dependent Role="PEDIDOS">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RESENAS_CLIENTE">
-          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
-          <End Role="RESENAS" Type="Self.RESENAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENTE">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="RESENAS">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RESERVAS_CLIENTE">
-          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
-          <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENTE">
-              <PropertyRef Name="ID_CLIENTE" />
-            </Principal>
-            <Dependent Role="RESERVAS">
               <PropertyRef Name="ID_CLIENTE" />
             </Dependent>
           </ReferentialConstraint>
@@ -1032,30 +665,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RESENAS_PRODUCTO">
-          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
-          <End Role="RESENAS" Type="Self.RESENAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Principal>
-            <Dependent Role="RESENAS">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RESERVAS_PRODUCTO">
-          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
-          <End Role="RESERVAS" Type="Self.RESERVAS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Principal>
-            <Dependent Role="RESERVAS">
-              <PropertyRef Name="ID_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TUsuario_TUsuario">
           <End Role="TRol" Type="Self.TRol" Multiplicity="1" />
           <End Role="TUsuario" Type="Self.TUsuario" Multiplicity="*" />
@@ -1068,12 +677,7 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PRODUCTOS_PROMOCIONES">
-          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
-          <End Role="PROMOCIONES" Type="Self.PROMOCIONES" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="PAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ADMINISTRADOR" EntityType="Self.ADMINISTRADOR" />
           <EntitySet Name="CARRITO" EntityType="Self.CARRITO" />
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
@@ -1083,19 +687,10 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <EntitySet Name="ORDEN" EntityType="Self.ORDEN" />
           <EntitySet Name="PEDIDOS" EntityType="Self.PEDIDOS" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
-          <EntitySet Name="PRODUCTOS_ELECTRONICOS" EntityType="Self.PRODUCTOS_ELECTRONICOS" />
-          <EntitySet Name="PROMOCIONES" EntityType="Self.PROMOCIONES" />
-          <EntitySet Name="RESENAS" EntityType="Self.RESENAS" />
-          <EntitySet Name="RESERVAS" EntityType="Self.RESERVAS" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TRol" EntityType="Self.TRol" />
           <EntitySet Name="TUsuario" EntityType="Self.TUsuario" />
-          <EntitySet Name="VIDEOJUEGOS" EntityType="Self.VIDEOJUEGOS" />
           <EntitySet Name="TProducto" EntityType="Self.TProducto" />
-          <AssociationSet Name="FK__ADMINISTR__ID_CL__44FF419A" Association="Self.FK__ADMINISTR__ID_CL__44FF419A">
-            <End Role="CLIENTE" EntitySet="CLIENTE" />
-            <End Role="ADMINISTRADOR" EntitySet="ADMINISTRADOR" />
-          </AssociationSet>
           <AssociationSet Name="FK_CARRITOS_CLIENTE" Association="Self.FK_CARRITOS_CLIENTE">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="CARRITO" EntitySet="CARRITO" />
@@ -1108,14 +703,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             <End Role="CATEGORIA" EntitySet="CATEGORIA" />
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
           </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTOS_ELECTRONICOS_CATEGORIA" Association="Self.FK_PRODUCTOS_ELECTRONICOS_CATEGORIA">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="PRODUCTOS_ELECTRONICOS" EntitySet="PRODUCTOS_ELECTRONICOS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VIDEOJUEGOS_CATEGORIA" Association="Self.FK_VIDEOJUEGOS_CATEGORIA">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="VIDEOJUEGOS" EntitySet="VIDEOJUEGOS" />
-          </AssociationSet>
           <AssociationSet Name="FK__ORDEN__ID_CLIENT__3E52440B" Association="Self.FK__ORDEN__ID_CLIENT__3E52440B">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="ORDEN" EntitySet="ORDEN" />
@@ -1123,14 +710,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
           <AssociationSet Name="FK_PEDIDOS_CLIENTE" Association="Self.FK_PEDIDOS_CLIENTE">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="PEDIDOS" EntitySet="PEDIDOS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RESENAS_CLIENTE" Association="Self.FK_RESENAS_CLIENTE">
-            <End Role="CLIENTE" EntitySet="CLIENTE" />
-            <End Role="RESENAS" EntitySet="RESENAS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RESERVAS_CLIENTE" Association="Self.FK_RESERVAS_CLIENTE">
-            <End Role="CLIENTE" EntitySet="CLIENTE" />
-            <End Role="RESERVAS" EntitySet="RESERVAS" />
           </AssociationSet>
           <AssociationSet Name="FK__DETALLE_O__ID_OR__412EB0B6" Association="Self.FK__DETALLE_O__ID_OR__412EB0B6">
             <End Role="ORDEN" EntitySet="ORDEN" />
@@ -1152,21 +731,9 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
             <End Role="DETALLES_CARRITO" EntitySet="DETALLES_CARRITO" />
           </AssociationSet>
-          <AssociationSet Name="FK_RESENAS_PRODUCTO" Association="Self.FK_RESENAS_PRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-            <End Role="RESENAS" EntitySet="RESENAS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RESERVAS_PRODUCTO" Association="Self.FK_RESERVAS_PRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-            <End Role="RESERVAS" EntitySet="RESERVAS" />
-          </AssociationSet>
           <AssociationSet Name="FK_TUsuario_TUsuario" Association="Self.FK_TUsuario_TUsuario">
             <End Role="TRol" EntitySet="TRol" />
             <End Role="TUsuario" EntitySet="TUsuario" />
-          </AssociationSet>
-          <AssociationSet Name="PRODUCTOS_PROMOCIONES" Association="Self.PRODUCTOS_PROMOCIONES">
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-            <End Role="PROMOCIONES" EntitySet="PROMOCIONES" />
           </AssociationSet>
           <FunctionImport Name="IniciarSesionSP" ReturnType="Collection(PAModel.IniciarSesionSP_Result)">
             <Parameter Name="Correo" Mode="In" Type="String" />
@@ -1226,16 +793,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PAModelStoreContainer" CdmEntityContainer="PAEntities">
-          <EntitySetMapping Name="ADMINISTRADOR">
-            <EntityTypeMapping TypeName="PAModel.ADMINISTRADOR">
-              <MappingFragment StoreEntitySet="ADMINISTRADOR">
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
-                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
-                <ScalarProperty Name="CONTRASENNA" ColumnName="CONTRASENNA" />
-                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CARRITO">
             <EntityTypeMapping TypeName="PAModel.CARRITO">
               <MappingFragment StoreEntitySet="CARRITO">
@@ -1331,54 +888,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PRODUCTOS_ELECTRONICOS">
-            <EntityTypeMapping TypeName="PAModel.PRODUCTOS_ELECTRONICOS">
-              <MappingFragment StoreEntitySet="PRODUCTOS_ELECTRONICOS">
-                <ScalarProperty Name="ID_PRODUCTO_ELECTRONICO" ColumnName="ID_PRODUCTO_ELECTRONICO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
-                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
-                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
-                <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PROMOCIONES">
-            <EntityTypeMapping TypeName="PAModel.PROMOCIONES">
-              <MappingFragment StoreEntitySet="PROMOCIONES">
-                <ScalarProperty Name="ID_PROMOCION" ColumnName="ID_PROMOCION" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
-                <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
-                <ScalarProperty Name="DESCUENTO" ColumnName="DESCUENTO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RESENAS">
-            <EntityTypeMapping TypeName="PAModel.RESENAS">
-              <MappingFragment StoreEntitySet="RESENAS">
-                <ScalarProperty Name="ID_RESENA" ColumnName="ID_RESENA" />
-                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
-                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
-                <ScalarProperty Name="CALIFICACION" ColumnName="CALIFICACION" />
-                <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
-                <ScalarProperty Name="FECHA_RESENA" ColumnName="FECHA_RESENA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RESERVAS">
-            <EntityTypeMapping TypeName="PAModel.RESERVAS">
-              <MappingFragment StoreEntitySet="RESERVAS">
-                <ScalarProperty Name="ID_RESERVA" ColumnName="ID_RESERVA" />
-                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
-                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
-                <ScalarProperty Name="FECHA_RESERVA" ColumnName="FECHA_RESERVA" />
-                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PAModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1412,20 +921,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VIDEOJUEGOS">
-            <EntityTypeMapping TypeName="PAModel.VIDEOJUEGOS">
-              <MappingFragment StoreEntitySet="VIDEOJUEGOS">
-                <ScalarProperty Name="ID_VIDEOJUEGO" ColumnName="ID_VIDEOJUEGO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="PLATAFORMA" ColumnName="PLATAFORMA" />
-                <ScalarProperty Name="GENERO" ColumnName="GENERO" />
-                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
-                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
-                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
-                <ScalarProperty Name="ID_PROVEEDOR" ColumnName="ID_PROVEEDOR" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TProducto">
             <EntityTypeMapping TypeName="PAModel.TProducto">
               <MappingFragment StoreEntitySet="TProducto">
@@ -1439,14 +934,6 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="PRODUCTOS_PROMOCIONES" TypeName="PAModel.PRODUCTOS_PROMOCIONES" StoreEntitySet="PRODUCTOS_PROMOCIONES">
-            <EndProperty Name="PRODUCTO">
-              <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
-            </EndProperty>
-            <EndProperty Name="PROMOCIONES">
-              <ScalarProperty Name="ID_PROMOCION" ColumnName="ID_PROMOCION" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="IniciarSesionSP" FunctionName="PAModel.Store.IniciarSesionSP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PAModel.IniciarSesionSP_Result">
@@ -1486,7 +973,7 @@ advertencia 6002: La tabla o vista 'PA.dbo.TProducto' no tiene definida ninguna 
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

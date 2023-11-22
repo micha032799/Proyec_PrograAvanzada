@@ -23,6 +23,25 @@ namespace Proyecto_PA.Models
                 return res.Content.ReadFromJsonAsync<List<ProductoEnt>>().Result;
             }
         }
-
+        public long RegistrarProducto(ProductoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = urlApi + "RegistrarProducto";
+                JsonContent contenido = JsonContent.Create(entidad);
+                var resp = client.PostAsync(url, contenido).Result;
+                return resp.Content.ReadFromJsonAsync<long>().Result;
+            }
+        }
+        public string ActualizarRutaImagen(ProductoEnt entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = urlApi + "ActualizarRutaImagen";
+                JsonContent contenido = JsonContent.Create(entidad);
+                var resp = client.PostAsync(url, contenido).Result;
+                return resp.Content.ReadFromJsonAsync<string>().Result;
+            }
+        }
     }
 }

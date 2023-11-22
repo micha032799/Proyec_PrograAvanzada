@@ -1,4 +1,6 @@
 ﻿
+using API_PA.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -34,6 +36,23 @@ namespace API_PA.Controllers
                 return tProducto.ConProducto;
             }
         }
+
+        [System.Web.Http.HttpPut]
+        [System.Web.Http.Route("ActualizarRutaImagen")]
+        public string ActualizarRutaImagen(TProducto tProducto)
+        {
+                using (var context = new PAEntities())
+                {
+                    var datos = context.TProducto.FirstOrDefault(x => x.ConProducto == tProducto.ConProducto);
+
+                    if (datos != null)
+                    {
+                        datos.Imagen = tProducto.Imagen;
+                        context.SaveChanges();
+                    }
+
+                    return "OK";
+                }
 
         /*
         private PAEntities db = new PAEntities();
