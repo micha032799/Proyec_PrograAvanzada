@@ -26,6 +26,7 @@
                     <li><a href="#"><i class="fa fa-envelope-o"></i> Electro@gmail.com</a></li>
                     <li><a href="#"><i class="fa fa-map-marker"></i> Sabana Sur</a></li>
                 </ul>
+
                 <ul class="header-links pull-right">
 
                     @if (Session["ConUsuario"] != null)
@@ -39,8 +40,8 @@
                         <li><a href="@Url.Action("RegistrarCuenta","Login")"><i class="fa fa-user-o"></i> Registarse</a></li>
                     }
 
-
-                    @if (Session["Nombre"] != null)
+                   
+                    @if (Session["Rol"] != null && Session["Rol"].Equals("Administrador"))
                     {
                         <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
                         <li><a href="@Url.Action("ConsultarProductos","Producto")"><i class="fa fa-cog"></i>Consultar Productos</a></li>
@@ -61,14 +62,6 @@
                     </div>
                     <div class="col-md-6">
                         <div class="header-search">
-                            @if (Session["ConUsuario"] != null)
-                            {
-                                @Session["Nombre"]
-                            }
-
-
-                            &nbsp;&nbsp;&nbsp;
-
                             <form>
                                 <select class="input-select">
                                     <option value="0">Categorias</option>
@@ -165,6 +158,22 @@
     <div class="section">
         <div class="container">
             <div class="row">
+                         @if (Session["ConUsuario"] != null)
+         {
+             @Session["Nombre"]
+         }
+
+
+         &nbsp;&nbsp;&nbsp;
+
+
+         @if (Session["ConUsuario"] != null)
+         {
+             <div style="margin-left:2%">
+                 <i class="fa fa-tag"></i> @Session["Cant"].ToString() &nbsp;&nbsp;&nbsp;
+                 <i class="fa fa-credit-card"></i> @decimal.Parse(Session["Subt"].ToString()).ToString("N2") + ivi
+             </div>
+         }
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">

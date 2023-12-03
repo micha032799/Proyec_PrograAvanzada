@@ -12,14 +12,15 @@ namespace API_PA
     using System;
     using System.Collections.Generic;
     
-    public partial class DETALLES_CARRITO
+    public partial class TCarrito
     {
-        public int ID_DETALLE { get; set; }
-        public int ID_CARRITO { get; set; }
-        public int ID_PRODUCTO { get; set; }
-        public int CANTIDAD { get; set; }
+        public long ConCarrito { get; set; }
+        public long ConUsuario { get; set; }
+        public long ConProducto { get; set; }
+        public int Cantidad { get; set; }
+        public System.DateTime FechaCarrito { get; set; }
     
-        public virtual CARRITO CARRITO { get; set; }
-        public virtual PRODUCTO PRODUCTO { get; set; }
+        public virtual TProducto TProducto { get; set; }
+        public virtual TUsuario TUsuario { get; set; }
     }
 }

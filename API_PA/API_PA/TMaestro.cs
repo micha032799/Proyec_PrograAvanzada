@@ -12,25 +12,20 @@ namespace API_PA
     using System;
     using System.Collections.Generic;
     
-    public partial class TUsuario
+    public partial class TMaestro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TUsuario()
+        public TMaestro()
         {
-            this.TCarrito = new HashSet<TCarrito>();
+            this.TDetalle = new HashSet<TDetalle>();
         }
     
+        public long ConMaestro { get; set; }
         public long ConUsuario { get; set; }
-        public string Identificacion { get; set; }
-        public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Contrasenna { get; set; }
-        public bool Estado { get; set; }
-        public string Direccion { get; set; }
-        public long ConRol { get; set; }
+        public decimal TotalFactura { get; set; }
+        public System.DateTime FechaCompra { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TCarrito> TCarrito { get; set; }
-        public virtual TRol TRol { get; set; }
+        public virtual ICollection<TDetalle> TDetalle { get; set; }
     }
 }

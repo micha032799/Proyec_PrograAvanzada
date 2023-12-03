@@ -11,42 +11,51 @@
         <div class="card-body">
             <h4 class="card-title">Información de Usuarios</h4>
 
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="text-align:center">Identificación</th>
-                        <th style="text-align:center">Nombre</th>
-                        <th style="text-align:center">Correo Electrónico</th>
-                        <th style="text-align:center">Estado</th>
-                        <th style="text-align:center">Cambiar Estado</th>
-                        <th style="text-align:center">Actualizar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+            @if (Model.Count() > 0)
+            {
+
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td style="text-align:center">@item.Identificacion</td>
-                            <td style="text-align:center">@item.Nombre</td>
-                            <td style="text-align:center">@item.Correo</td>
-
-                            @if (item.Estado)
-                            {
-                                <td style="text-align:center">Activo</td>
-                            }
-                            else
-                            {
-                                <td style="text-align:center">Inactivo</td>
-                            }
-
-
-                            <td style="text-align:center"><a href="@Url.Action("ActualizarEstadoUsuario", "Usuario", new {ConUsuario  = item.ConUsuario})"><i class="fa fa-exchange fa-lg"></i></a></td>
-                            <td style="text-align:center"><a href="@Url.Action("ActualizarUsuario", "Usuario", new {ConUsuario = item.ConUsuario})"><i class="fa fa-user"></i></a></td>
+                            <th style="text-align:center">Identificación</th>
+                            <th style="text-align:center">Nombre</th>
+                            <th style="text-align:center">Correo Electrónico</th>
+                            <th style="text-align:center">Estado</th>
+                            <th style="text-align:center">Cambiar Estado</th>
+                            <th style="text-align:center">Actualizar</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.Identificacion</td>
+                                <td style="text-align:center">@item.Nombre</td>
+                                <td style="text-align:center">@item.Correo</td>
 
+                                @if (item.Estado)
+                                {
+                                    <td style="text-align:center">Activo</td>
+                                }
+                                else
+                                {
+                                    <td style="text-align:center">Inactivo</td>
+                                }
+
+
+                                <td style="text-align:center"><a href="@Url.Action("ActualizarEstadoUsuario", "Usuario", new {ConUsuario  = item.ConUsuario})"><i class="fa fa-exchange fa-lg"></i></a></td>
+                                <td style="text-align:center"><a href="@Url.Action("ActualizarUsuario", "Usuario", new {ConUsuario = item.ConUsuario})"><i class="fa fa-user"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+             }
+            else
+            {
+                <div class="alert alert-info col-12" role="alert" style="text-align:center; margin-top:5%; font-size:18pt;">
+                    No hay usuarios registrados en este momento
+                </div>
+            }
         </div>
     </div>
 </div>

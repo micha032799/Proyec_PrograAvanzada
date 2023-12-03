@@ -151,14 +151,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Entities\CarritoEnt.cs" />
     <Compile Include="Entities\ProductoEnt.cs" />
     <Compile Include="Entities\UsuarioEnt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarritoModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -946,7 +949,7 @@
     <Content Include="template\fonts\slick.eot" />
     <Content Include="template\fonts\slick.ttf" />
     <Content Include="template\fonts\slick.woff" />
-    <Content Include="Views\Producto\vistaProducto.cshtml" />
+    <Content Include="Views\Producto\VistaProducto.cshtml" />
     <Content Include="Views\Carrito\verCarrito.cshtml" />
     <Content Include="Views\Categorias\verCategorias.cshtml" />
     <Content Include="template\scss\components\landing-screens\_auth.scss" />

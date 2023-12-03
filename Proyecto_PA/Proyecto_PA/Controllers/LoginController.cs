@@ -12,11 +12,12 @@ namespace Proyecto_PA.Controllers
     {
         UsuarioModel usuarioModel = new UsuarioModel();
         ProductoModel productoModel = new ProductoModel();
+        CarritoModel carritoModel = new CarritoModel();
 
         [HttpGet]
         public ActionResult Index()
         {
-            var datos = productoModel.ConsultarProductos();
+            var datos = productoModel.ConsultarProductos().Where(x => x.Estado == true && x.Cantidad > 0).ToList();
             return View(datos);
         }
 
@@ -24,7 +25,7 @@ namespace Proyecto_PA.Controllers
         public ActionResult CerrarSesion()
         {
             Session.Clear();
-            return RedirectToAction("IniciarSesion", "Login");
+            return RedirectToAction("Index", "Login");
         }
 
 
@@ -43,6 +44,12 @@ namespace Proyecto_PA.Controllers
             {
                 Session["ConUsuario"] = resp.ConUsuario;
                 Session["Nombre"] = resp.Nombre;
+                Session["Rol"] = resp.DescripcionRol;
+
+                var datos = carritoModel.ConsultarCarrito(resp.ConUsuario);
+                Session["Cant"] = datos.Sum(x => x.Cantidad);
+                Session["Subt"] = datos.Sum(x => x.SubTotal);
+
                 return RedirectToAction("Index", "Login");
             }
             else

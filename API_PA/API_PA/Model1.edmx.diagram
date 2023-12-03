@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="901a23efbe6443d7ba36048db6ce9e9a" Name="Diagram1">
+      <Diagram DiagramId="01cf937ebccc496bb267705cc327ef23" Name="Diagram1">
         <EntityTypeShape EntityType="PAModel.CARRITO" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PAModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="PAModel.CLIENTE" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
@@ -15,9 +15,12 @@
         <EntityTypeShape EntityType="PAModel.PEDIDOS" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PAModel.PRODUCTO" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PAModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TRol" Width="1.5" PointX="8.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TCarrito" Width="1.5" PointX="13.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TDetalle" Width="1.5" PointX="13.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TMaestro" Width="1.5" PointX="11" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TProducto" Width="1.5" PointX="11" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TRol" Width="1.5" PointX="8.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="PAModel.TUsuario" Width="1.5" PointX="11" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TProducto" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="PAModel.FK_CARRITOS_CLIENTE" ManuallyRouted="false" />
         <AssociationConnector Association="PAModel.FK_DETALLES_CARRITO_CARRITO" ManuallyRouted="false" />
         <AssociationConnector Association="PAModel.FK__PRODUCTO__ID_CAT__398D8EEE" ManuallyRouted="false" />
@@ -28,6 +31,10 @@
         <AssociationConnector Association="PAModel.FK_DETALLE_PEDIDO_PEDIDO" ManuallyRouted="false" />
         <AssociationConnector Association="PAModel.FK_DETALLE_PEDIDO_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="PAModel.FK_DETALLES_CARRITO_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_TCarrito_TProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_TCarrito_TUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_TDetalle_TMaestro" ManuallyRouted="false" />
+        <AssociationConnector Association="PAModel.FK_TDetalle_TProducto" ManuallyRouted="false" />
         <AssociationConnector Association="PAModel.FK_TUsuario_TUsuario" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

@@ -101,17 +101,38 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TCarrito">
+          <Key>
+            <PropertyRef Name="ConCarrito" />
+          </Key>
+          <Property Name="ConCarrito" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConUsuario" Type="bigint" Nullable="false" />
+          <Property Name="ConProducto" Type="bigint" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="FechaCarrito" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TDetalle">
+          <Key>
+            <PropertyRef Name="ConDetalle" />
+          </Key>
+          <Property Name="ConDetalle" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConMaestro" Type="bigint" Nullable="false" />
+          <Property Name="ConProducto" Type="bigint" Nullable="false" />
+          <Property Name="CantidadCompra" Type="int" Nullable="false" />
+          <Property Name="PrecioCompra" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TMaestro">
+          <Key>
+            <PropertyRef Name="ConMaestro" />
+          </Key>
+          <Property Name="ConMaestro" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConUsuario" Type="bigint" Nullable="false" />
+          <Property Name="TotalFactura" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaCompra" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="TProducto">
           <Key>
             <PropertyRef Name="ConProducto" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Descripcion" />
-            <PropertyRef Name="Precio" />
-            <PropertyRef Name="Cantidad" />
-            <PropertyRef Name="Imagen" />
-            <PropertyRef Name="Estado" />
           </Key>
           <Property Name="ConProducto" Type="bigint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
@@ -261,6 +282,54 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TCarrito_TProducto">
+          <End Role="TProducto" Type="Self.TProducto" Multiplicity="1" />
+          <End Role="TCarrito" Type="Self.TCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TProducto">
+              <PropertyRef Name="ConProducto" />
+            </Principal>
+            <Dependent Role="TCarrito">
+              <PropertyRef Name="ConProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TCarrito_TUsuario">
+          <End Role="TUsuario" Type="Self.TUsuario" Multiplicity="1" />
+          <End Role="TCarrito" Type="Self.TCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUsuario">
+              <PropertyRef Name="ConUsuario" />
+            </Principal>
+            <Dependent Role="TCarrito">
+              <PropertyRef Name="ConUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalle_TMaestro">
+          <End Role="TMaestro" Type="Self.TMaestro" Multiplicity="1" />
+          <End Role="TDetalle" Type="Self.TDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMaestro">
+              <PropertyRef Name="ConMaestro" />
+            </Principal>
+            <Dependent Role="TDetalle">
+              <PropertyRef Name="ConMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalle_TProducto">
+          <End Role="TProducto" Type="Self.TProducto" Multiplicity="1" />
+          <End Role="TDetalle" Type="Self.TDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TProducto">
+              <PropertyRef Name="ConProducto" />
+            </Principal>
+            <Dependent Role="TDetalle">
+              <PropertyRef Name="ConProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TUsuario_TUsuario">
           <End Role="TRol" Type="Self.TRol" Multiplicity="1" />
           <End Role="TUsuario" Type="Self.TUsuario" Multiplicity="*" />
@@ -326,19 +395,12 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
           <EntitySet Name="PEDIDOS" EntityType="Self.PEDIDOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TCarrito" EntityType="Self.TCarrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDetalle" EntityType="Self.TDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMaestro" EntityType="Self.TMaestro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TProducto" EntityType="Self.TProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRol" EntityType="Self.TRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TUsuario" EntityType="Self.TUsuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TProducto" EntityType="Self.TProducto" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TProducto].[ConProducto] AS [ConProducto], 
-    [TProducto].[Nombre] AS [Nombre], 
-    [TProducto].[Descripcion] AS [Descripcion], 
-    [TProducto].[Precio] AS [Precio], 
-    [TProducto].[Cantidad] AS [Cantidad], 
-    [TProducto].[Imagen] AS [Imagen], 
-    [TProducto].[Estado] AS [Estado]
-    FROM [dbo].[TProducto] AS [TProducto]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__DETALLE_O__ID_OR__412EB0B6" Association="Self.FK__DETALLE_O__ID_OR__412EB0B6">
             <End Role="ORDEN" EntitySet="ORDEN" />
             <End Role="DETALLE_ORDEN" EntitySet="DETALLE_ORDEN" />
@@ -378,6 +440,22 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
           <AssociationSet Name="FK_PEDIDOS_CLIENTE" Association="Self.FK_PEDIDOS_CLIENTE">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TCarrito_TProducto" Association="Self.FK_TCarrito_TProducto">
+            <End Role="TProducto" EntitySet="TProducto" />
+            <End Role="TCarrito" EntitySet="TCarrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TCarrito_TUsuario" Association="Self.FK_TCarrito_TUsuario">
+            <End Role="TUsuario" EntitySet="TUsuario" />
+            <End Role="TCarrito" EntitySet="TCarrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalle_TMaestro" Association="Self.FK_TDetalle_TMaestro">
+            <End Role="TMaestro" EntitySet="TMaestro" />
+            <End Role="TDetalle" EntitySet="TDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalle_TProducto" Association="Self.FK_TDetalle_TProducto">
+            <End Role="TProducto" EntitySet="TProducto" />
+            <End Role="TDetalle" EntitySet="TDetalle" />
           </AssociationSet>
           <AssociationSet Name="FK_TUsuario_TUsuario" Association="Self.FK_TUsuario_TUsuario">
             <End Role="TRol" EntitySet="TRol" />
@@ -505,6 +583,54 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="TCarrito">
+          <Key>
+            <PropertyRef Name="ConCarrito" />
+          </Key>
+          <Property Name="ConCarrito" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConUsuario" Type="Int64" Nullable="false" />
+          <Property Name="ConProducto" Type="Int64" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="FechaCarrito" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TProducto" Relationship="Self.FK_TCarrito_TProducto" FromRole="TCarrito" ToRole="TProducto" />
+          <NavigationProperty Name="TUsuario" Relationship="Self.FK_TCarrito_TUsuario" FromRole="TCarrito" ToRole="TUsuario" />
+        </EntityType>
+        <EntityType Name="TDetalle">
+          <Key>
+            <PropertyRef Name="ConDetalle" />
+          </Key>
+          <Property Name="ConDetalle" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConMaestro" Type="Int64" Nullable="false" />
+          <Property Name="ConProducto" Type="Int64" Nullable="false" />
+          <Property Name="CantidadCompra" Type="Int32" Nullable="false" />
+          <Property Name="PrecioCompra" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="TMaestro" Relationship="Self.FK_TDetalle_TMaestro" FromRole="TDetalle" ToRole="TMaestro" />
+          <NavigationProperty Name="TProducto" Relationship="Self.FK_TDetalle_TProducto" FromRole="TDetalle" ToRole="TProducto" />
+        </EntityType>
+        <EntityType Name="TMaestro">
+          <Key>
+            <PropertyRef Name="ConMaestro" />
+          </Key>
+          <Property Name="ConMaestro" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConUsuario" Type="Int64" Nullable="false" />
+          <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TDetalle" Relationship="Self.FK_TDetalle_TMaestro" FromRole="TMaestro" ToRole="TDetalle" />
+        </EntityType>
+        <EntityType Name="TProducto">
+          <Key>
+            <PropertyRef Name="ConProducto" />
+          </Key>
+          <Property Name="ConProducto" Type="Int64" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TCarrito" Relationship="Self.FK_TCarrito_TProducto" FromRole="TProducto" ToRole="TCarrito" />
+          <NavigationProperty Name="TDetalle" Relationship="Self.FK_TDetalle_TProducto" FromRole="TProducto" ToRole="TDetalle" />
+        </EntityType>
         <EntityType Name="TRol">
           <Key>
             <PropertyRef Name="ConRol" />
@@ -525,25 +651,8 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ConRol" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TCarrito" Relationship="Self.FK_TCarrito_TUsuario" FromRole="TUsuario" ToRole="TCarrito" />
           <NavigationProperty Name="TRol" Relationship="Self.FK_TUsuario_TUsuario" FromRole="TUsuario" ToRole="TRol" />
-        </EntityType>
-        <EntityType Name="TProducto">
-          <Key>
-            <PropertyRef Name="ConProducto" />
-            <PropertyRef Name="Nombre" />
-            <PropertyRef Name="Descripcion" />
-            <PropertyRef Name="Precio" />
-            <PropertyRef Name="Cantidad" />
-            <PropertyRef Name="Imagen" />
-            <PropertyRef Name="Estado" />
-          </Key>
-          <Property Name="ConProducto" Type="Int64" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Estado" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_CARRITOS_CLIENTE">
           <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
@@ -665,6 +774,54 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TCarrito_TProducto">
+          <End Role="TProducto" Type="Self.TProducto" Multiplicity="1" />
+          <End Role="TCarrito" Type="Self.TCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TProducto">
+              <PropertyRef Name="ConProducto" />
+            </Principal>
+            <Dependent Role="TCarrito">
+              <PropertyRef Name="ConProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TCarrito_TUsuario">
+          <End Role="TUsuario" Type="Self.TUsuario" Multiplicity="1" />
+          <End Role="TCarrito" Type="Self.TCarrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUsuario">
+              <PropertyRef Name="ConUsuario" />
+            </Principal>
+            <Dependent Role="TCarrito">
+              <PropertyRef Name="ConUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalle_TMaestro">
+          <End Role="TMaestro" Type="Self.TMaestro" Multiplicity="1" />
+          <End Role="TDetalle" Type="Self.TDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMaestro">
+              <PropertyRef Name="ConMaestro" />
+            </Principal>
+            <Dependent Role="TDetalle">
+              <PropertyRef Name="ConMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TDetalle_TProducto">
+          <End Role="TProducto" Type="Self.TProducto" Multiplicity="1" />
+          <End Role="TDetalle" Type="Self.TDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TProducto">
+              <PropertyRef Name="ConProducto" />
+            </Principal>
+            <Dependent Role="TDetalle">
+              <PropertyRef Name="ConProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TUsuario_TUsuario">
           <End Role="TRol" Type="Self.TRol" Multiplicity="1" />
           <End Role="TUsuario" Type="Self.TUsuario" Multiplicity="*" />
@@ -688,9 +845,12 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
           <EntitySet Name="PEDIDOS" EntityType="Self.PEDIDOS" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TCarrito" EntityType="Self.TCarrito" />
+          <EntitySet Name="TDetalle" EntityType="Self.TDetalle" />
+          <EntitySet Name="TMaestro" EntityType="Self.TMaestro" />
+          <EntitySet Name="TProducto" EntityType="Self.TProducto" />
           <EntitySet Name="TRol" EntityType="Self.TRol" />
           <EntitySet Name="TUsuario" EntityType="Self.TUsuario" />
-          <EntitySet Name="TProducto" EntityType="Self.TProducto" />
           <AssociationSet Name="FK_CARRITOS_CLIENTE" Association="Self.FK_CARRITOS_CLIENTE">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="CARRITO" EntitySet="CARRITO" />
@@ -731,6 +891,22 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
             <End Role="DETALLES_CARRITO" EntitySet="DETALLES_CARRITO" />
           </AssociationSet>
+          <AssociationSet Name="FK_TCarrito_TProducto" Association="Self.FK_TCarrito_TProducto">
+            <End Role="TProducto" EntitySet="TProducto" />
+            <End Role="TCarrito" EntitySet="TCarrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TCarrito_TUsuario" Association="Self.FK_TCarrito_TUsuario">
+            <End Role="TUsuario" EntitySet="TUsuario" />
+            <End Role="TCarrito" EntitySet="TCarrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalle_TMaestro" Association="Self.FK_TDetalle_TMaestro">
+            <End Role="TMaestro" EntitySet="TMaestro" />
+            <End Role="TDetalle" EntitySet="TDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TDetalle_TProducto" Association="Self.FK_TDetalle_TProducto">
+            <End Role="TProducto" EntitySet="TProducto" />
+            <End Role="TDetalle" EntitySet="TDetalle" />
+          </AssociationSet>
           <AssociationSet Name="FK_TUsuario_TUsuario" Association="Self.FK_TUsuario_TUsuario">
             <End Role="TRol" EntitySet="TRol" />
             <End Role="TUsuario" EntitySet="TUsuario" />
@@ -762,11 +938,11 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PAModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PAModel.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -785,7 +961,18 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
           <Property Type="String" Name="Contrasenna" Nullable="false" MaxLength="20" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="String" Name="Direccion" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="Descripcion_Rol" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DescripcionRol" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -899,6 +1086,51 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TCarrito">
+            <EntityTypeMapping TypeName="PAModel.TCarrito">
+              <MappingFragment StoreEntitySet="TCarrito">
+                <ScalarProperty Name="ConCarrito" ColumnName="ConCarrito" />
+                <ScalarProperty Name="ConUsuario" ColumnName="ConUsuario" />
+                <ScalarProperty Name="ConProducto" ColumnName="ConProducto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="FechaCarrito" ColumnName="FechaCarrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDetalle">
+            <EntityTypeMapping TypeName="PAModel.TDetalle">
+              <MappingFragment StoreEntitySet="TDetalle">
+                <ScalarProperty Name="ConDetalle" ColumnName="ConDetalle" />
+                <ScalarProperty Name="ConMaestro" ColumnName="ConMaestro" />
+                <ScalarProperty Name="ConProducto" ColumnName="ConProducto" />
+                <ScalarProperty Name="CantidadCompra" ColumnName="CantidadCompra" />
+                <ScalarProperty Name="PrecioCompra" ColumnName="PrecioCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMaestro">
+            <EntityTypeMapping TypeName="PAModel.TMaestro">
+              <MappingFragment StoreEntitySet="TMaestro">
+                <ScalarProperty Name="ConMaestro" ColumnName="ConMaestro" />
+                <ScalarProperty Name="ConUsuario" ColumnName="ConUsuario" />
+                <ScalarProperty Name="TotalFactura" ColumnName="TotalFactura" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TProducto">
+            <EntityTypeMapping TypeName="PAModel.TProducto">
+              <MappingFragment StoreEntitySet="TProducto">
+                <ScalarProperty Name="ConProducto" ColumnName="ConProducto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TRol">
             <EntityTypeMapping TypeName="PAModel.TRol">
               <MappingFragment StoreEntitySet="TRol">
@@ -921,19 +1153,6 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TProducto">
-            <EntityTypeMapping TypeName="PAModel.TProducto">
-              <MappingFragment StoreEntitySet="TProducto">
-                <ScalarProperty Name="ConProducto" ColumnName="ConProducto" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="IniciarSesionSP" FunctionName="PAModel.Store.IniciarSesionSP">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PAModel.IniciarSesionSP_Result">
@@ -944,7 +1163,7 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
                 <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Descripcion_Rol" ColumnName="Descripcion Rol" />
+                <ScalarProperty Name="DescripcionRol" ColumnName="DescripcionRol" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -952,8 +1171,25 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PAModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PAModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PAModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PAModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PAModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PAModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PAModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PAModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PAModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
@@ -973,7 +1209,7 @@ warning 6002: The table/view 'PA.dbo.TProducto' does not have a primary key defi
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
