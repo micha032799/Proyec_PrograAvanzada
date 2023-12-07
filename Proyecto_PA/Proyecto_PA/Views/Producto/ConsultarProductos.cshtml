@@ -40,7 +40,7 @@
                                 <td>@item.Nombre</td>
                                 <td>@item.Descripcion</td>
                                 <td>@item.Cantidad</td>
-                                <td>@item.Precio</td>
+                                <td>@item.Precio.ToString("N2")</td>
 
                                 @if (item.Estado == true)
                                 {
@@ -50,9 +50,16 @@
                                 {
                                     <td>Inactivo</td>
                                 }
-                                <td style="text-align:center"><img src="@item.Imagen" style="width:150px; height:100px; border-radius:0px"></td>
-                                <td></td>
-                                <td></td>
+                                <td style="text-align:center"><img src="@item.Imagen" style="width:100px; height:100px; border-radius:0px"></td>
+
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("ActualizarEstadoProducto", "Producto", new { q = item.ConProducto })"><i class="fa fa-exchange fa-lg"></i></a>
+                                </td>
+
+                                <td style="text-align:center">
+                                    <a href="@Url.Action("ActualizarProducto", "Producto", new { q = item.ConProducto })"><i class="fa fa-tag fa-lg"></i></a>
+                                </td>
+
                             </tr>
                         }
                     </tbody>
@@ -70,3 +77,14 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableData').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
+        });
+    });
+</script>

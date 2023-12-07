@@ -13,7 +13,6 @@ namespace Proyecto_PA.Controllers
     {
         ProductoModel productoModel = new ProductoModel();
 
-
         [HttpGet]
         public ActionResult ConsultarProductos()
         {
@@ -26,17 +25,18 @@ namespace Proyecto_PA.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult RegistrarProducto(HttpPostedFileBase ImgProducto ,  ProductoEnt entidad)
+        public ActionResult RegistrarProducto(HttpPostedFileBase ImgProducto, ProductoEnt entidad)
         {
             entidad.Imagen = string.Empty;
             entidad.Estado = true;
 
-                long conProducto = productoModel.RegistrarProducto(entidad);
+            long conProducto = productoModel.RegistrarProducto(entidad);
 
-                if (conProducto > 0)
-                {
-                    string extension = Path.GetExtension(Path.GetFileName(ImgProducto.FileName));
+            if (conProducto > 0)
+            {
+                string extension = Path.GetExtension(Path.GetFileName(ImgProducto.FileName));
                 string ruta = AppDomain.CurrentDomain.BaseDirectory + "Images\\" + conProducto + extension;
                 ImgProducto.SaveAs(ruta);
 
@@ -45,13 +45,69 @@ namespace Proyecto_PA.Controllers
 
                 productoModel.ActualizarRutaImagen(entidad);
 
-                    return RedirectToAction("ConsultarProductos", "Producto");
-                }
-                else
-                {
-                    ViewBag.MensajeUsuario = "No se ha registrado el producto.";
-                    return View();
-                }
+                return RedirectToAction("ConsultarProductos", "Producto");
             }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha registrado el producto";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarEstadoProducto(long q)
+        {
+            var entidad = new ProductoEnt();
+            entidad.ConProducto = q;
+
+            string respuesta = productoModel.ActualizarEstadoProducto(entidad);
+
+            if (respuesta == "OK")
+            {
+                return RedirectToAction("ConsultarProductos", "Producto");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha podido cambiar el estado del producto";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarProducto(long q)
+        {
+            var datos = productoModel.ConsultaProducto(q);
+            return View(datos);
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarProducto(HttpPostedFileBase ImgProducto, ProductoEnt entidad)
+        {
+            string respuesta = productoModel.ActualizarProducto(entidad);
+
+            if (respuesta == "OK")
+            {
+                if (ImgProducto != null)
+                {
+                    string extension = Path.GetExtension(Path.GetFileName(ImgProducto.FileName));
+                    string ruta = AppDomain.CurrentDomain.BaseDirectory + "Images\\" + entidad.ConProducto + extension;
+                    ImgProducto.SaveAs(ruta);
+
+                    entidad.Imagen = "/Images/" + entidad.ConProducto + extension;
+                    entidad.ConProducto = entidad.ConProducto;
+
+                    productoModel.ActualizarRutaImagen(entidad);
+                }
+
+                return RedirectToAction("ConsultarProductos", "Producto");
+            }
+            else
+            {
+                ViewBag.MensajeUsuario = "No se ha podido actualizar la información del producto";
+                return View();
+            }
+        }
+
+
     }
 }

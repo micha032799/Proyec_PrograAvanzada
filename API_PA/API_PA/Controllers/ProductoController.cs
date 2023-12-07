@@ -11,11 +11,8 @@ namespace API_PA.Controllers
     public class ProductoController : ApiController
     {
 
-
-        // GET: api/TProductoes
-
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("ConsultarProductos")]
+        [HttpGet]
+        [Route("ConsultarProductos")]
         public List<TProducto> ConsultarProductos()
         {
             using (var context = new PAEntities())
@@ -25,8 +22,21 @@ namespace API_PA.Controllers
             }
         }
 
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("RegistrarProducto")]
+        [HttpGet]
+        [Route("ConsultaProducto")]
+        public TProducto ConsultaProducto(long q)
+        {
+            using (var context = new PAEntities())
+            {
+                context.Configuration.LazyLoadingEnabled = false;
+                return (from x in context.TProducto
+                        where x.ConProducto == q
+                        select x).FirstOrDefault();
+            }
+        }
+
+        [HttpPost]
+        [Route("RegistrarProducto")]
         public long RegistrarProducto(TProducto tProducto)
         {
             using (var context = new PAEntities())
@@ -37,121 +47,51 @@ namespace API_PA.Controllers
             }
         }
 
-        [System.Web.Http.HttpPut]
-        [System.Web.Http.Route("ActualizarRutaImagen")]
+        [HttpPut]
+        [Route("ActualizarRutaImagen")]
         public string ActualizarRutaImagen(TProducto tProducto)
         {
-                using (var context = new PAEntities())
-                {
-                    var datos = context.TProducto.FirstOrDefault(x => x.ConProducto == tProducto.ConProducto);
-
-                    if (datos != null)
-                    {
-                        datos.Imagen = tProducto.Imagen;
-                        context.SaveChanges();
-                    }
-
-                    return "OK";
-                }
-
-            /*
-            private PAEntities db = new PAEntities();
-
-            // GET: api/TProductoes
-            public IQueryable<TProducto> GetTProducto()
+            using (var context = new PAEntities())
             {
-                return db.TProducto;
-            }
+                var datos = context.TProducto.FirstOrDefault(x => x.ConProducto == tProducto.ConProducto);
 
-            // GET: api/TProductoes/5
-            [ResponseType(typeof(TProducto))]
-            public IHttpActionResult GetTProducto(long id)
+                if (datos != null)
+                {
+                    datos.Imagen = tProducto.Imagen;
+                    context.SaveChanges();
+                }
+
+                return "OK";
+            }
+        }
+
+        [HttpPut]
+        [Route("ActualizarProducto")]
+        public string ActualizarProducto(TProducto tProducto)
+        {
+            using (var context = new PAEntities())
             {
-                TProducto tProducto = db.TProducto.Find(id);
-                if (tProducto == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(tProducto);
+                var datos = context.TProducto.Where(x => x.ConProducto == tProducto.ConProducto).FirstOrDefault();
+                datos.Nombre = tProducto.Nombre;
+                datos.Descripcion = tProducto.Descripcion;
+                datos.Cantidad = tProducto.Cantidad;
+                datos.Precio = tProducto.Precio;
+                context.SaveChanges();
+                return "OK";
             }
+        }
 
-            // PUT: api/TProductoes/5
-            [ResponseType(typeof(void))]
-            public IHttpActionResult PutTProducto(long id, TProducto tProducto)
+        [HttpPut]
+        [Route("ActualizarEstadoProducto")]
+        public string ActualizarEstadoUsuario(TProducto tProducto)
+        {
+            using (var context = new PAEntities())
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                if (id != tProducto.ConProducto)
-                {
-                    return BadRequest();
-                }
-
-                db.Entry(tProducto).State = EntityState.Modified;
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TProductoExists(id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-
-                return StatusCode(HttpStatusCode.NoContent);
+                var datos = context.TProducto.Where(x => x.ConProducto == tProducto.ConProducto).FirstOrDefault();
+                datos.Estado = (datos.Estado ? false : true);
+                context.SaveChanges();
+                return "OK";
             }
-
-            // POST: api/TProductoes
-            [ResponseType(typeof(TProducto))]
-            public IHttpActionResult PostTProducto(TProducto tProducto)
-            {
-
-                db.TProducto.Add(tProducto);
-                db.SaveChanges();
-
-                return CreatedAtRoute("DefaultApi", new { id = tProducto.ConProducto }, tProducto);
-            }
-
-            // DELETE: api/TProductoes/5
-            [ResponseType(typeof(TProducto))]
-            public IHttpActionResult DeleteTProducto(long id)
-            {
-                TProducto tProducto = db.TProducto.Find(id);
-                if (tProducto == null)
-                {
-                    return NotFound();
-                }
-
-                db.TProducto.Remove(tProducto);
-                db.SaveChanges();
-
-                return Ok(tProducto);
-            }
-
-            protected override void Dispose(bool disposing)
-            {
-                if (disposing)
-                {
-                    db.Dispose();
-                }
-                base.Dispose(disposing);
-            }
-
-            private bool TProductoExists(long id)
-            {
-                return db.TProducto.Count(e => e.ConProducto == id) > 0;
-            }
-            */
         }
 
     }
