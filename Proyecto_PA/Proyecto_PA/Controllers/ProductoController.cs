@@ -12,6 +12,7 @@ namespace Proyecto_PA.Controllers
     public class ProductoController : Controller
     {
         ProductoModel productoModel = new ProductoModel();
+        CarritoModel carritoModel = new CarritoModel();
 
         [HttpGet]
         public ActionResult ConsultarProductos()
@@ -98,6 +99,10 @@ namespace Proyecto_PA.Controllers
 
                     productoModel.ActualizarRutaImagen(entidad);
                 }
+
+                var datos = carritoModel.ConsultarCarrito(long.Parse(Session["ConUsuario"].ToString()));
+                Session["Cant"] = datos.Sum(x => x.Cantidad);
+                Session["Subt"] = datos.Sum(x => x.SubTotal);
 
                 return RedirectToAction("ConsultarProductos", "Producto");
             }

@@ -61,5 +61,67 @@ namespace API_PA.Controllers
                         }).ToList();
             }
         }
+
+        [HttpPost]
+        [Route("PagarCarrito")]
+        public int PagarCarrito(TCarrito tCarrito)
+        {
+            using (var context = new PAEntities())
+            {
+                return context.Pagar_CarritoSP(tCarrito.ConUsuario);
+            }
+        }
+
+        //[HttpGet]
+        //[Route("ConsultarFacturas")]
+        //public List<TMaestro> ConsultarFacturas(long q)
+        //{
+        //    using (var context = new PAEntities())
+        //    {
+        //        context.Configuration.LazyLoadingEnabled = false;
+        //        return (from x in context.TMaestro
+        //                where x.ConUsuario == q
+        //                select x).ToList();
+        //    }
+        //}
+
+        //[HttpGet]
+        //[Route("ConsultarDetalleFactura")]
+        //public object ConsultarDetalleFactura(long q)
+        //{
+        //    using (var context = new PAEntities())
+        //    {
+        //        context.Configuration.LazyLoadingEnabled = false;
+        //        return (from x in context.TDetalle
+        //                join y in context.TProducto on x.ConProducto equals y.ConProducto
+        //                where x.ConMaestro == q
+        //                select new
+        //                {
+        //                    x.ConMaestro,
+        //                    x.PrecioCompra,
+        //                    x.CantidadCompra,
+        //                    x.Impuesto,
+        //                    y.Nombre,
+        //                    SubTotal = x.PrecioCompra * x.CantidadCompra,
+        //                    ImpuestoTotal = x.Impuesto * x.CantidadCompra,
+        //                    Total = (x.PrecioCompra * x.CantidadCompra) + (x.Impuesto * x.CantidadCompra)
+        //                }).ToList();
+        //    }
+        //}
+
+        //[HttpDelete]
+        //[Route("EliminarProductoCarrito")]
+        //public void EliminarProductoCarrito(long q)
+        //{
+        //    using (var context = new PAEntities())
+        //    {
+        //        var datos = (from x in context.TCarrito
+        //                     where x.ConCarrito == q
+        //                     select x).FirstOrDefault();
+
+        //        context.TCarrito.Remove(datos);
+        //        context.SaveChanges();
+        //    }
+        //}
     }
 }
