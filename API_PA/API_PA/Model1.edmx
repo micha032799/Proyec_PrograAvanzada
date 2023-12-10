@@ -920,7 +920,7 @@
             <Parameter Name="Correo" Mode="In" Type="String" />
             <Parameter Name="Contrasenna" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Pagar_CarritoSP">
+          <FunctionImport Name="Pagar_CarritoSP" ReturnType="Collection(String)">
             <Parameter Name="ConUsuario" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="RegistrarCuentaSP">
