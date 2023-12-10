@@ -48,12 +48,12 @@ namespace Proyecto_PA.Controllers
             var resultado = carritoModel.PagarCarrito(entidad);
 
             var datos = carritoModel.ConsultarCarrito(long.Parse(Session["ConUsuario"].ToString()));
-            
+            Session["Cant"] = datos.Sum(x => x.Cantidad);
+            Session["Subt"] = datos.Sum(x => x.SubTotal);
 
-            if (resultado > 0)
+
+            if (resultado == "OK")
             {
-                Session["Cant"] = datos.Sum(x => x.Cantidad);
-                Session["Subt"] = datos.Sum(x => x.SubTotal);
                 return RedirectToAction("Index", "Login");
             }
             else
@@ -63,26 +63,28 @@ namespace Proyecto_PA.Controllers
             }
         }
 
-        //[HttpGet]
-        //public ActionResult ConsultarFacturas()
-        //{
-        //    var datos = carritoModel.ConsultarFacturas(long.Parse(Session["ConUsuario"].ToString()));
-        //    return View(datos);
-        //}
 
-        //[HttpGet]
-        //public ActionResult ConsultarDetalleFactura(long q)
-        //{
-        //    var datos = carritoModel.ConsultarDetalleFactura(q);
-        //    return View(datos);
-        //}
+        [HttpGet]
+        public ActionResult ConsultarFacturas()
+        {
+            var datos = carritoModel.ConsultarFacturas(long.Parse(Session["ConUsuario"].ToString()));
+            return View(datos);
+        }
 
-        //[HttpGet]
-        //public ActionResult EliminarProductoCarrito(long q)
-        //{
-        //    carritoModel.EliminarProductoCarrito(q);
-        //    return RedirectToAction("ConsultarCarrito", "Carrito");
-        //}
+
+        [HttpGet]
+        public ActionResult ConsultarDetalleFactura(long q)
+        {
+            var datos = carritoModel.ConsultarDetalleFactura(q);
+            return View(datos);
+        }
+
+        [HttpGet]
+        public ActionResult EliminarProductoCarrito(long q)
+        {
+            carritoModel.EliminarProductoCarrito(q);
+            return RedirectToAction("ConsultarCarrito", "Carrito");
+        }
 
 
 

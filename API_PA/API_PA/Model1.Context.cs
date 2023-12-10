@@ -57,13 +57,13 @@ namespace API_PA
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesionSP_Result>("IniciarSesionSP", correoParameter, contrasennaParameter);
         }
     
-        public virtual int Pagar_CarritoSP(Nullable<long> conUsuario)
+        public virtual ObjectResult<string> Pagar_CarritoSP(Nullable<long> conUsuario)
         {
             var conUsuarioParameter = conUsuario.HasValue ?
                 new ObjectParameter("ConUsuario", conUsuario) :
                 new ObjectParameter("ConUsuario", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Pagar_CarritoSP", conUsuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Pagar_CarritoSP", conUsuarioParameter);
         }
     
         public virtual int RegistrarCuentaSP(string identificacion, string nombre, string correo, string contrasenna, string direccion)
