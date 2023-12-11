@@ -38,7 +38,7 @@
                     }
 
 
-                    @if (Session["Nombre"] != null)
+                    @if (Session["Rol"] != null && Session["Rol"].Equals("Administrador"))
                     {
                         <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
                         <li><a href="@Url.Action("ConsultarProductos","Producto")"><i class="fa fa-cog"></i>Consultar Productos</a></li>
@@ -86,27 +86,10 @@
                             </div>
                         </div>
                         <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Categorias</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">Ofertas</a></li>
-                                    <li><a href="#">Nuevos productos</a></li>
-                                    <li><a href="#">Celulares</a></li>
-                                    <li><a href="#">Cámaras</a></li>
-                                    <li><a href="#">Accesorios</a></li>
-                                </ul>
-                            </div>
+                            
                         </div>
                         <div class="clearfix visible-xs"></div>
-                        <div class="col-md-3 col-xs-6">
-                            <div class="footer">
-                                <h3 class="footer-title">Información</h3>
-                                <ul class="footer-links">
-                                    <li><a href="#">Política de privacidad</a></li>
-                                    <li><a href="#">Términos y Condiciones</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        
 
                     </div>
                 </div>
