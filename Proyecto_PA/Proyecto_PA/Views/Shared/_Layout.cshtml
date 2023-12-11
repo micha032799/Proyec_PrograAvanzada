@@ -42,7 +42,7 @@
                     }
 
                    
-                    @if (Session["Rol"] != null && Session["Rol"].Equals("Administrador"))
+                    @if (Session["Rol"] != null && Session["Rol"].ToString().Equals("1"))
                     {
                         <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
                         <li><a href="@Url.Action("ConsultarProductos","Producto")"><i class="fa fa-cog"></i>Consultar Productos</a></li>
@@ -108,12 +108,14 @@
                     {
                         <li><a href="@Url.Action("PerfilUsuario", "Usuario")">Perfil Usuario</a></li>
                         <li><a href="@Url.Action("ConsultarCarrito", "Carrito")">Carrito</a></li>
-                        <li><a href="@Url.Action("ConsultarFacturas", "Carrito")">Facturas</a></li>}
-                        @if (Session["Rol"] != null && Session["Rol"].Equals("Administrador"))
+                        <li><a href="@Url.Action("ConsultarFacturas", "Carrito")">Facturas</a></li>
+                    }
+                    
+                    @if (Session["Rol"] != null && Session["Rol"].ToString().Equals("1"))
                         {
                             <li><a href="@Url.Action("ConsultaUsuarios", "Usuario")">Usuarios</a></li>
                             <li><a href="@Url.Action("ConsultarProductos", "Producto")">Productos</a></li>
-                            }
+                       }
                         
                     </ul>
                 <ul class="additional-info">

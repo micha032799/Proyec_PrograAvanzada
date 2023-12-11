@@ -44,7 +44,7 @@ namespace Proyecto_PA.Controllers
             {
                 Session["ConUsuario"] = resp.ConUsuario;
                 Session["Nombre"] = resp.Nombre;
-                Session["Rol"] = resp.DescripcionRol;
+                Session["Rol"] = resp.ConRol;
 
                 var datos = carritoModel.ConsultarCarrito(resp.ConUsuario);
                 Session["Cant"] = datos.Sum(x => x.Cantidad);

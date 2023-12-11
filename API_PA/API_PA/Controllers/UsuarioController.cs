@@ -95,7 +95,12 @@ namespace API_PA.Controllers
                         datos.Correo = entidad.Correo;
                         datos.Direccion = entidad.Direccion;
                         datos.Contrasenna = entidad.Contrasenna;
-                        datos.ConRol = entidad.DescripcionRol;
+
+                        if (entidad.ConRol != 0)
+                        {
+                            datos.ConRol = entidad.ConRol;
+                        }
+
                         context.SaveChanges();
                     }
 

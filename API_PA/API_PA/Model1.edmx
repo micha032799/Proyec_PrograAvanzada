@@ -969,7 +969,7 @@
           <Property Type="String" Name="Contrasenna" Nullable="false" MaxLength="20" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="String" Name="Direccion" Nullable="false" MaxLength="500" />
-          <Property Type="String" Name="DescripcionRol" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="ConRol" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1161,7 +1161,7 @@
                 <ScalarProperty Name="Contrasenna" ColumnName="Contrasenna" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="DescripcionRol" ColumnName="DescripcionRol" />
+                <ScalarProperty Name="ConRol" ColumnName="ConRol" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1191,7 +1191,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

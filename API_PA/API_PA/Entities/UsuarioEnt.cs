@@ -10,7 +10,7 @@
         public bool Estado { get; set; }
         public string Direccion { get; set; }
 
-        public long DescripcionRol { get; set; }
+        public long ConRol { get; set; }
 
     }
 }
