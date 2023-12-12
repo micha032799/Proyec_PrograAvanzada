@@ -10,16 +10,10 @@
 namespace API_PA
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class DETALLES_CARRITO
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int ID_DETALLE { get; set; }
-        public int ID_CARRITO { get; set; }
-        public int ID_PRODUCTO { get; set; }
-        public int CANTIDAD { get; set; }
-    
-        public virtual CARRITO CARRITO { get; set; }
-        public virtual PRODUCTO PRODUCTO { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

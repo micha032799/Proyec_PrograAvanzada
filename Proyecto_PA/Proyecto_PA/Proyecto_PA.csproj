@@ -950,9 +950,6 @@
     <Content Include="template\fonts\slick.eot" />
     <Content Include="template\fonts\slick.ttf" />
     <Content Include="template\fonts\slick.woff" />
-    <Content Include="Views\Producto\VistaProducto.cshtml" />
-    <Content Include="Views\Carrito\verCarrito.cshtml" />
-    <Content Include="Views\Categorias\verCategorias.cshtml" />
     <Content Include="template\scss\components\landing-screens\_auth.scss" />
     <Content Include="template\scss\components\loaders\_bar-loader.scss" />
     <Content Include="template\scss\components\loaders\_circle-loader.scss" />
