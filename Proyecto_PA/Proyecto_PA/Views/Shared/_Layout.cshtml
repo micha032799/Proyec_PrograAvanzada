@@ -45,7 +45,7 @@
                     @if (Session["Rol"] != null && Session["Rol"].ToString().Equals("1"))
                     {
                         <li><a href="@Url.Action("ConsultaUsuarios","Usuario")"><i class="fa fa-cog"></i> Mantenimiento Usuarios</a></li>
-                        <li><a href="@Url.Action("ConsultarProductos","Producto")"><i class="fa fa-cog"></i>Mantenimiento Productos</a></li>
+                        <li><a href="@Url.Action("ConsultarProductos","Producto")"><i class="fa fa-cog"></i>Consultar Productos</a></li>
                     }
 
                 </ul>
@@ -104,7 +104,19 @@
             <div id="responsive-nav">
                 <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="#">Pantalla Principal</a></li>
-                                           
+                    @if (Session["Nombre"] != null)
+                    {
+                        <li><a href="@Url.Action("PerfilUsuario", "Usuario")">Perfil Usuario</a></li>
+                        <li><a href="@Url.Action("ConsultarCarrito", "Carrito")">Carrito</a></li>
+                        <li><a href="@Url.Action("ConsultarFacturas", "Carrito")">Facturas</a></li>
+                    }
+                    
+                    @if (Session["Rol"] != null && Session["Rol"].ToString().Equals("1"))
+                        {
+                            <li><a href="@Url.Action("ConsultaUsuarios", "Usuario")">Usuarios</a></li>
+                            <li><a href="@Url.Action("ConsultarProductos", "Producto")">Productos</a></li>
+                       }
+                        
                     </ul>
                 <ul class="additional-info">
                     <li class="text-right">
@@ -144,6 +156,7 @@
                         <div class="col-md-3 col-xs-6">
                             <div class="footer">
                                 <h3 class="footer-title">Sobre Nosotros</h3>
+                                <p> En frente del Cotepecos Sabana Sur, San José, Costa Rica</p>
                                 <ul class="footer-links">
                                     <li><a href="#"><i class="fa fa-map-marker"></i> En frente del Cotepecos Sabana Sur, San José, Costa Rica</a></li>
                                     <li><a href="#"><i class="fa fa-phone"></i>+506 86077091</a></li>
