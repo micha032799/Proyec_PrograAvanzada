@@ -20,24 +20,25 @@
 
                             <div class="product-img">
                                 <img src="@item.Imagen" class="card-img-top" alt="@item.Nombre">
-                                <div class="product-label">
-                                    <span class="sale">-30%</span>
-                                    <span class="new">NEW</span>
-                                </div>
                             </div>
                             <div class="product-body">
-                                <p class="product-category">Categoria </p>
                                 <h5 class="card-title">@item.Nombre</h5>
+                                <p class="card-text">@item.Descripcion</p>
                                 <p class="card-text">Unidades: @item.Cantidad - ₡ @item.Precio.ToString("N2")</p>
                             </div>
                             @if (Session["ConUsuario"] != null)
                             {
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Oferta</button>
+                                @*<div class="add-to-cart">
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Comprar</button>
+                                </div>*@
+
+                                <div class="add-to-cart d-flex justify-content-between align-items-center">
+                                    <input id="prd-@item.ConProducto" type="number" class="form-control form-control-sm" min="1" max="@item.Cantidad">
+                                    <a href="#" class="btn btn-danger ml-2" onclick="AgregarCarrito(@item.ConProducto, @item.Cantidad)"><i class="fa fa-shopping-cart"></i></a>
                                 </div>
                             }
 
-                            </div>}
+                        </div>}
                 </div>
             </div>
             <div id="slick-nav-1" class="products-slick-nav"></div>
@@ -68,7 +69,7 @@
                         <p class="card-text">Unidades: @item.Cantidad - ₡ @item.Precio.ToString("N2")</p>
                         @if (Session["ConUsuario"] != null)
                         {
-                            <div class="d-flex justify-content-between align-items-center">
+                            <div class="add-to-cart d-flex justify-content-between align-items-center">
                                 <input id="prd-@item.ConProducto" type="number" class="form-control form-control-sm" min="1" max="@item.Cantidad">
                                 <a href="#" class="btn btn-danger ml-2" onclick="AgregarCarrito(@item.ConProducto, @item.Cantidad)"><i class="fa fa-shopping-cart"></i></a>
                             </div>
