@@ -17,17 +17,6 @@ namespace API_PA.Controllers
             try {
                 using (var context = new PAEntities())
                 {
-                    //TUsuario user = new TUsuario();
-                    //user.Identificacion = entidad.Identificacion;
-                    //user.Nombre = entidad.Nombre;
-                    //user.Correo = entidad.Correo;
-                    //user.Contrasena = entidad.Contrasena;
-                    //user.Estado = entidad.Estado;
-                    //user.Direccion = entidad.Direccion;
-
-                    //context.TUsuario.Add(user);
-                    //context.SaveChanges();
-
                     context.RegistrarCuentaSP(entidad.Identificacion, entidad.Nombre, entidad.Correo, entidad.Contrasenna,entidad.Direccion);
 
                     return "Registro realizado exitosamente!";
@@ -44,12 +33,6 @@ namespace API_PA.Controllers
             try {
                 using (var context = new PAEntities())
                 {
-                    //var datos = (from x in context.TUsuario
-                    //             where x.Correo == entidad.Correo
-                    //             && x.Contrasena == entidad.Contrasena
-                    //             && x.Estado == true
-                    //             select x).FirstOrDefault();
-
                     return context.IniciarSesionSP(entidad.Correo, entidad.Contrasenna).FirstOrDefault();
                 }
             }
