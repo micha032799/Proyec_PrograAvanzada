@@ -27,15 +27,6 @@ namespace API_PA
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CARRITO> CARRITO { get; set; }
-        public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
-        public virtual DbSet<CLIENTE> CLIENTE { get; set; }
-        public virtual DbSet<DETALLE_ORDEN> DETALLE_ORDEN { get; set; }
-        public virtual DbSet<DETALLE_PEDIDO> DETALLE_PEDIDO { get; set; }
-        public virtual DbSet<DETALLES_CARRITO> DETALLES_CARRITO { get; set; }
-        public virtual DbSet<ORDEN> ORDEN { get; set; }
-        public virtual DbSet<PEDIDOS> PEDIDOS { get; set; }
-        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TCarrito> TCarrito { get; set; }
         public virtual DbSet<TDetalle> TDetalle { get; set; }

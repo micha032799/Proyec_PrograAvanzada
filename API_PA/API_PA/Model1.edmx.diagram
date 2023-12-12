@@ -4,33 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c384f356efba4dc2bfcbf4f95b1f239e" Name="Diagram1">
-        <EntityTypeShape EntityType="PAModel.CARRITO" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.CLIENTE" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.DETALLE_ORDEN" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.DETALLE_PEDIDO" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.DETALLES_CARRITO" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.ORDEN" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.PEDIDOS" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.PRODUCTO" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TCarrito" Width="1.5" PointX="13.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TDetalle" Width="1.5" PointX="13.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TMaestro" Width="1.5" PointX="11" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TProducto" Width="1.5" PointX="11" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TRol" Width="1.5" PointX="8.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="PAModel.TUsuario" Width="1.5" PointX="11" PointY="8.25" IsExpanded="true" />
-        <AssociationConnector Association="PAModel.FK_CARRITOS_CLIENTE" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK_DETALLES_CARRITO_CARRITO" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK__PRODUCTO__ID_CAT__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK__ORDEN__ID_CLIENT__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK_PEDIDOS_CLIENTE" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK__DETALLE_O__ID_OR__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK__DETALLE_O__ID_PR__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK_DETALLE_PEDIDO_PEDIDO" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK_DETALLE_PEDIDO_PRODUCTO" ManuallyRouted="false" />
-        <AssociationConnector Association="PAModel.FK_DETALLES_CARRITO_PRODUCTO" ManuallyRouted="false" />
+      <Diagram DiagramId="32f820c2936f4b1692a5b777e3bce763" Name="Diagram1">
+        <EntityTypeShape EntityType="PAModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TCarrito" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TDetalle" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TMaestro" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TProducto" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TRol" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PAModel.TUsuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="PAModel.FK_TCarrito_TProducto" ManuallyRouted="false" />
         <AssociationConnector Association="PAModel.FK_TCarrito_TUsuario" ManuallyRouted="false" />
         <AssociationConnector Association="PAModel.FK_TDetalle_TMaestro" ManuallyRouted="false" />
