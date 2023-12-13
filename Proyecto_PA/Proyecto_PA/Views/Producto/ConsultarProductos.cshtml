@@ -9,6 +9,10 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
+            <a href="@Url.Action("Index", "Login")" class="btn btn-outline-secondary rounded-pill mb-3">
+                <i class="fa fa-arrow-left mr-2"></i> Volver
+            </a>
+
             <h4 class="card-title">Información de Productos</h4>
 
             <div style="text-align:left">
@@ -18,8 +22,6 @@
 
             @if (Model.Count() > 0)
             {
-
-
                 <table id="tableData" class="table table-bordered">
                     <thead>
                         <tr>
@@ -59,12 +61,10 @@
                                 <td style="text-align:center">
                                     <a href="@Url.Action("ActualizarProducto", "Producto", new { q = item.ConProducto })"><i class="fa fa-tag fa-lg"></i></a>
                                 </td>
-
                             </tr>
                         }
                     </tbody>
                 </table>
-
             }
             else
             {
@@ -72,8 +72,6 @@
                     No hay productos registrados en este momento
                 </div>
             }
-            
-
         </div>
     </div>
 </div>

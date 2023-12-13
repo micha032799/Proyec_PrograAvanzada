@@ -1,6 +1,6 @@
 ﻿@model Proyecto_PA.Entities.ProductoEnt
 @{
-    ViewBag.Title = "RegistrarProducto";
+    ViewBag.Title = "ActualizarProducto";
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
 
@@ -8,9 +8,10 @@
     <div class="row w-100 mx-0">
         <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <div class="brand-logo">
-                    <img src="~/template/images/logo.svg" alt="logo">
-                </div>
+                <a href="@Url.Action("ConsultarProductos", "Producto")" class="btn btn-outline-secondary rounded-pill mb-3">
+                    <i class="fa fa-arrow-left mr-2"></i> Volver
+                </a>
+
                 <h3 class="card-title text-left mb-3">Actualizar el Producto</h3>
 
                 @if (ViewBag.MensajeUsuario != null)
@@ -30,8 +31,8 @@
                         {
                             @class = "form-control form-control-lg",
                             @placeholder = "Nombre",
-                           @type = "text"
-                       })
+                            @type = "text"
+                        })
                     </div>
                     <div class="form-group">
                         <label>Descripción</label>

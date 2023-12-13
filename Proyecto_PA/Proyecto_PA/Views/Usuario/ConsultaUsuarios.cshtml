@@ -3,17 +3,19 @@
 @{
     ViewBag.Title = "ConsultaUsuarios";
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
-
 }
 
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
+            <a href="@Url.Action("Index", "Login")" class="btn btn-outline-secondary rounded-pill mb-3">
+                <i class="fa fa-arrow-left mr-2"></i> Volver
+            </a>
+
             <h4 class="card-title">Información de Usuarios</h4>
 
             @if (Model.Count() > 0)
             {
-
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -42,14 +44,13 @@
                                     <td style="text-align:center">Inactivo</td>
                                 }
 
-
-                                <td style="text-align:center"><a href="@Url.Action("ActualizarEstadoUsuario", "Usuario", new {ConUsuario  = item.ConUsuario})"><i class="fa fa-exchange fa-lg"></i></a></td>
-                                <td style="text-align:center"><a href="@Url.Action("ActualizarUsuario", "Usuario", new {ConUsuario = item.ConUsuario})"><i class="fa fa-user"></i></a></td>
+                                <td style="text-align:center"><a href="@Url.Action("ActualizarEstadoUsuario", "Usuario", new { ConUsuario  = item.ConUsuario })"><i class="fa fa-exchange fa-lg"></i></a></td>
+                                <td style="text-align:center"><a href="@Url.Action("ActualizarUsuario", "Usuario", new { ConUsuario = item.ConUsuario })"><i class="fa fa-user"></i></a></td>
                             </tr>
                         }
                     </tbody>
                 </table>
-             }
+            }
             else
             {
                 <div class="alert alert-info col-12" role="alert" style="text-align:center; margin-top:5%; font-size:18pt;">
@@ -60,9 +61,9 @@
     </div>
 </div>
 
-<script src="https://code.jquerry.com/jquery-3.7.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script>
-    $(document).ready(function (){
+    $(document).ready(function () {
         $('#tableData').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

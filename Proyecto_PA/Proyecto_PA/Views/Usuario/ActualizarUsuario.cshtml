@@ -1,6 +1,6 @@
 ﻿@model Proyecto_PA.Entities.UsuarioEnt
 @{
-    ViewBag.Title = "ActualizarUsuario";
+    ViewBag.Title = "PerfilUsuario";
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
 
@@ -8,10 +8,12 @@
     <div class="row w-100 mx-0">
         <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <div class="brand-logo">
-                    <img src="~/template/images/logo.svg" alt="logo">
-                </div>
-                <h3 class="card-title text-left mb-3">Información del Usuario</h3>
+
+                <a href="@Url.Action("ConsultaUsuarios", "Usuario")" class="btn btn-outline-secondary rounded-pill mb-3">
+                    <i class="fa fa-arrow-left mr-2"></i> Volver
+                </a>
+
+                <h3 class="card-title text-left mb-3">Perfil de Usuario</h3>
 
                 @if (ViewBag.MensajeUsuario != null)
                 {
@@ -20,7 +22,7 @@
                     </div>
                 }
 
-                @using (Html.BeginForm("ActualizarUsuario", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
+                @using (Html.BeginForm("PerfilUsuario", "Usuario", FormMethod.Post, new { @class = "pt-3" }))
                 {
                     @Html.HiddenFor(m => m.ConUsuario)
 
@@ -39,12 +41,22 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.TextBoxFor(m => m.Contrasenna, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Contraseña" })
+                        @Html.TextBoxFor(m => m.Contrasenna, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Constraseña" })
                     </div>
 
-                    <div class="form-group">
-                        @Html.DropDownListFor(m => m.ConRol, ViewBag.Rol as List<SelectListItem>, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Rol" })
-                    </div>
+                    if (Session["Rol"] != null && Session["Rol"].ToString().Equals("1"))
+                    {
+
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.ConRol, ViewBag.Rol as List<SelectListItem>, new { @class = "form-control form-control-lg", @type = "text", @placeholder = "Rol" })
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.ConRol, ViewBag.Rol as List<SelectListItem>, new { @disabled = "disabled", @class = "form-control form-control-lg", @type = "text", @placeholder = "Rol" })
+                        </div>
+                    }
 
                     <div class="mt-3">
                         <input type="submit" class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn" value="Actualizar Perfil">
