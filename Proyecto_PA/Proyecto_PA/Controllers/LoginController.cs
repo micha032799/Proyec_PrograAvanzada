@@ -73,7 +73,7 @@ namespace Proyecto_PA.Controllers
 
             if (resp == "Registro realizado exitosamente!")
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("IniciarSesion", "Login");
             }
             else
             {
