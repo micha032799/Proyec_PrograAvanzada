@@ -31,7 +31,7 @@ namespace Proyecto_PA.Controllers
             if (resp == "OK")
             {
                 Session["Nombre"] = entidad.Nombre;
-                return RedirectToAction("PerfilUsuario", "Usuario");
+                return RedirectToAction("Index", "Login");
             }
             else
             {
