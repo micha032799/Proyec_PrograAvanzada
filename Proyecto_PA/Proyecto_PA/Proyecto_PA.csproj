@@ -1062,6 +1062,7 @@
     <Content Include="Views\Carrito\ConsultarCarrito.cshtml" />
     <Content Include="Views\Carrito\ConsultarFacturas.cshtml" />
     <Content Include="Views\Carrito\ConsultarDetalleFactura.cshtml" />
+    <Content Include="Views\Producto\ListaProductos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

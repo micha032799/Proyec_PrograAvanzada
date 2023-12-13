@@ -1,8 +1,42 @@
 ﻿@model List<Proyecto_PA.Entities.ProductoEnt>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .clientes-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .cliente {
+        width: calc(33.33% - 20px); /* Espacio para tres elementos en una fila */
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .cliente-img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%; /* Hace que la imagen sea redondeada */
+        margin-bottom: 10px;
+    }
+
+    .cliente h4 {
+        margin: 5px 0;
+    }
+
+    .cliente p {
+        font-style: italic;
+    }
+
+</style>
+
+
 
 <div class="col-md-12">
     <div class="section-title">
@@ -19,73 +53,73 @@
                         <div class="product">
 
                             <div class="product-img">
-                                <img src="@item.Imagen" class="card-img-top" alt="@item.Nombre">
+                                <img src="@item.Imagen" class="card-img-top" style="width:200px; height:200px; border-radius:0px" alt="@item.Nombre">
                                 <div class="product-label">
 
                                 </div>
                             </div>
                             <div class="product-body">
-                                <p class="product-category">Categoria </p>
                                 <h5 class="card-title">@item.Nombre</h5>
                                 <p class="card-text">Unidades: @item.Cantidad - ₡ @item.Precio.ToString("N2")</p>
                             </div>
                             @if (Session["ConUsuario"] != null)
                             {
                                 <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Oferta</button>
+                                    <button class="add-to-cart-btn"><a href="@Url.Action("ListaProductos","Producto")"><i class="fa fa-shopping-cart"></i>Ver Producto</a></button>
                                 </div>
                             }
 
-                            </div>}
+                        </div>}
                 </div>
             </div>
+            <br /><br />
             <div id="slick-nav-1" class="products-slick-nav"></div>
         </div>
     </div>
 </div>
-
+&nbsp;&nbsp;&nbsp;&nbsp;
+<br />
+<br />
 <div class="col-md-12">
     <div class="section-title">
-        <br />
-        <br />
-        <br />
-        <h3 class="title">Lista de Productos</h3>
+        <h3 class="title">Acerca de Nosotros</h3>
     </div>
 </div>
+<div class="col-md-12">
+    <p style="text-align:center">
+        Electro es una tienda online dedicada a la venta de dispositivos electrónicos como teléfonos móviles, laptops, cámaras digitales y otros gadgets tecnológicos.
+        Nuestra página web ofrece una amplia variedad de productos de las marcas más importantes del mercado como Samsung, Sony, Canon, HP, entre otras. Los usuarios podrán encontrar lo último en cuanto a smartphones, tablets, computadoras portátiles, cámaras réflex y de seguridad.
+        La página tiene un diseño moderno, minimalista y fácil de navegar.
+    </p>
+</div>
 
-@if (Model.Count() > 0)
-{
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-4 mb-4">
-                <div class="card text-center">
-                    <img src="@item.Imagen" class="card-img-top" alt="@item.Nombre" width="200" height="200">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Nombre</h5>
-                        <p class="card-text">@item.Descripcion</p>
-                        <p class="card-text">Unidades: @item.Cantidad - ₡ @item.Precio.ToString("N2")</p>
-                        @if (Session["ConUsuario"] != null)
-                        {
-                            <div class="d-flex justify-content-between align-items-center">
-                                <input id="prd-@item.ConProducto" type="number" class="form-control form-control-sm" min="1" max="@item.Cantidad">
-                                <a href="#" class="btn btn-danger ml-2" onclick="AgregarCarrito(@item.ConProducto, @item.Cantidad)"><i class="fa fa-shopping-cart"></i></a>
-                            </div>
-                        }
-                    </div>
+&nbsp;&nbsp;&nbsp;
+<br /><br /><br />
 
-                </div>
-            </div>
-        }
-        &nbsp;&nbsp;&nbsp;
+<div>
+    <div class="section-title">
+         <h3 class="title">Testimonios</h3>
+     </div>
+</div>
+<div class="clientes-container">
+    <div class="cliente">
+        <img src="https://paulafotografia.com/wp-content/uploads/2021/11/Paula-Rauber-Altima-16.jpg" alt="Foto Cliente 1" class="cliente-img">
+        <h4>Alejandro Gómez</h4>
+        <p>"He utilizado el servicio de Electro durante meses y no puedo estar más contento. Es fácil de usar, confiable y ha hecho una gran diferencia en mi negocio. Recomiendo encarecidamente este servicio a todos."</p>
     </div>
-}
-else
-{
-    <div class="alert alert-info col-12" role="alert" style="text-align:center; margin-top:5%; font-size:18pt;">
-        No hay productos registrados en este momento
+
+    <div class="cliente">
+        <img src="https://img.freepik.com/fotos-premium/retrato-reir-mujer-morena_993457-189.jpg" alt="Foto Cliente 2" class="cliente-img">
+        <h4>Sofía Torres</h4>
+        <p>"¡Increíble experiencia! Compré el [nombre del producto] y estoy encantado. La calidad del producto superó mis expectativas y el servicio al cliente fue excepcional. ¡Definitivamente volveré a comprar!"</p>
     </div>
-}
+
+    <div class="cliente">
+        <img src="https://img.freepik.com/fotos-premium/emprendimiento-comercio-compra-consumidor-disponible_53876-58754.jpg" class="cliente-img">
+        <h4>Andrés López</h4>
+        <p>"Tuve un problema con mi pedido y el equipo de atención al cliente respondió rápidamente. Su atención y prontitud para resolver el problema fue excepcional. ¡Gracias por el excelente servicio!"</p>
+    </div>
+</div>
 
 
 

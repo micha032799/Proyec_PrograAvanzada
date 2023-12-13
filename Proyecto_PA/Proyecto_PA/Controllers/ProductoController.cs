@@ -14,6 +14,12 @@ namespace Proyecto_PA.Controllers
         ProductoModel productoModel = new ProductoModel();
         CarritoModel carritoModel = new CarritoModel();
 
+        public ActionResult ListaProductos()
+        {
+            var datos = productoModel.ConsultarProductos().Where(x => x.Estado == true && x.Cantidad > 0).ToList();
+            return View(datos);
+        }
+
         [HttpGet]
         public ActionResult ConsultarProductos()
         {

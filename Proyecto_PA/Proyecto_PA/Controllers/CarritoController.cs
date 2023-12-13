@@ -54,7 +54,7 @@ namespace Proyecto_PA.Controllers
 
             if (resultado == "OK")
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("ListaProductos", "Producto");
             }
             else
             {
