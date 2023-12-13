@@ -10,18 +10,13 @@
 namespace API_PA
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TDetalle
+    public partial class sp_helpdiagrams_Result
     {
-        public long ConDetalle { get; set; }
-        public long ConMaestro { get; set; }
-        public long ConProducto { get; set; }
-        public int CantidadCompra { get; set; }
-        public decimal PrecioCompra { get; set; }
-        public decimal Impuesto { get; set; }
-    
-        public virtual TMaestro TMaestro { get; set; }
-        public virtual TProducto TProducto { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }
